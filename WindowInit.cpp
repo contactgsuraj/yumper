@@ -4,7 +4,7 @@ bool init(SDL_Window*& m_window, SDL_Renderer*& m_renderer) {
   bool success = true;
 
   // Initialize SDL
-  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+  if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
     printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
     success = false;
   } else {
@@ -15,14 +15,14 @@ bool init(SDL_Window*& m_window, SDL_Renderer*& m_renderer) {
 
     // Create window
     m_window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED,
-                               SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
-                               SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+                                SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
+                                SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (m_window == NULL) {
       printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
       success = false;
     } else {
       // Create renderer for window
-      m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED);
+      m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
       if (m_renderer == NULL) {
         printf("Renderer could not be created! SDL Error: %s\n",
                SDL_GetError());

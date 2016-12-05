@@ -22,16 +22,16 @@ class Texture {
   // Renders texture at given point
   void render(int x, int y, SDL_Renderer*&);
 
+  // Renders with a clipping
+  void render(int x, int y, SDL_Rect* clip, SDL_Renderer*&);
+
   // Gets image dimensions
-  int getWidth();
-  int getHeight();
+  int get_width();
+  int get_height();
 
  private:
-  // The actual hardware texture
   SDL_Texture* mTexture;
-
-  // Image dimensions
-  int mWidth;
-  int mHeight;
+  int m_width;
+  int m_height;
 };
 #endif /* TEXTURE_H */

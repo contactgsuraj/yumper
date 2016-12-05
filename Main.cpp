@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string>
 #include "Texture.hpp"
+#include "Timer.hpp"
 #include "WindowInit.hpp"
 
 // Loads media
@@ -24,22 +25,19 @@ Texture t_bob;
 Texture t_bg;
 
 bool loadMedia() {
-  // Loading success flag
-  bool success = true;
-
   // Load Foo' texture
   if (!t_bob.loadFromFile("assets/bob.png", m_renderer)) {
     printf("Failed to load Foo' texture image!\n");
-    success = false;
+    return false;
   }
 
   // Load background texture
   if (!t_bg.loadFromFile("assets/bg.png", m_renderer)) {
     printf("Failed to load background texture image!\n");
-    success = false;
+    return false;
   }
 
-  return success;
+  return true;
 }
 
 void close() {
@@ -59,44 +57,53 @@ void close() {
 }
 
 int main(int argc, char* args[]) {
-  // Start up SDL and create window
   if (!init(m_window, m_renderer)) {
     printf("Failed to initialize!\n");
-  } else {
-    // Load media
-    if (!loadMedia()) {
-      printf("Failed to load media!\n");
-    } else {
-      // Main loop flag
-      bool quit = false;
+    return 1;
+  }
 
-      // Event handler
-      SDL_Event e;
+  if (!loadMedia()) {
+    printf("Failed to load media!\n");
+    return 1;
+  }
 
-      // While application is running
-      while (!quit) {
-        // Handle events on queue
-        while (SDL_PollEvent(&e) != 0) {
-          // User requests quit
-          if (e.type == SDL_QUIT) {
-            quit = true;
-          }
+  bool quit = false;
+
+  // Event handler
+  SDL_Event e;
+
+  int height = 340;
+  Timer timer;
+  int counter = 0;
+  while (!quit) {
+    // Handle events on queue
+    while (SDL_PollEvent(&e) != 0) {
+      if (e.type == SDL_QUIT) {
+        quit = true;
+      } else if (e.type == SDL_KEYDOWN) {
+        // Select surfaces based on key press
+        switch (e.key.keysym.sym) {
+          case SDLK_UP:
+          case SDLK_SPACE:
+            height = 240;
+            break;
+          default:
+            height = 340;
+            break;
         }
-
-        // Clear screen
-        SDL_SetRenderDrawColor(m_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-        SDL_RenderClear(m_renderer);
-
-        // Render background texture to screen
-        t_bg.render(0, 0, m_renderer);
-
-        // Render Foo' to the screen
-        t_bob.render(240, 190, m_renderer);
-
-        // Update screen
-        SDL_RenderPresent(m_renderer);
       }
     }
+    // Clear screen
+    SDL_SetRenderDrawColor(m_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_RenderClear(m_renderer);
+
+    t_bg.render((-1 * counter * 4), 0,  m_renderer);
+    //t_bob.render(20, height, m_renderer);
+
+    // Update screen
+    SDL_RenderPresent(m_renderer);
+    counter++;
+    counter %= 160;
   }
 
   // Free resources and close SDL

@@ -2,8 +2,8 @@
 Texture::Texture() {
   // Initialize
   mTexture = NULL;
-  mWidth = 0;
-  mHeight = 0;
+  m_width = 0;
+  m_height = 0;
 }
 
 Texture::~Texture() {
@@ -35,8 +35,8 @@ bool Texture::loadFromFile(std::string path, SDL_Renderer*& renderer) {
              SDL_GetError());
     } else {
       // Get image dimensions
-      mWidth = loadedSurface->w;
-      mHeight = loadedSurface->h;
+      m_width = loadedSurface->w;
+      m_height = loadedSurface->h;
     }
 
     // Get rid of old loaded surface
@@ -53,17 +53,31 @@ void Texture::free() {
   if (mTexture != NULL) {
     SDL_DestroyTexture(mTexture);
     mTexture = NULL;
-    mWidth = 0;
-    mHeight = 0;
+    m_width = 0;
+    m_height = 0;
   }
 }
 
 void Texture::render(int x, int y, SDL_Renderer*& renderer) {
   // Set rendering space and render to screen
-  SDL_Rect renderQuad = {x, y, mWidth, mHeight};
+  SDL_Rect renderQuad = {x, y, m_width, m_height};
   SDL_RenderCopy(renderer, mTexture, NULL, &renderQuad);
 }
 
-int Texture::getWidth() { return mWidth; }
+void Texture::render(int x, int y, SDL_Rect* clip, SDL_Renderer*& renderer) {
+  // Set rendering space and render to screen
+  SDL_Rect renderQuad = {x, y, m_width, m_height};
 
-int Texture::getHeight() { return mHeight; }
+  // Set clip rendering dimensions
+  if (clip != NULL) {
+    renderQuad.w = clip->w;
+    renderQuad.h = clip->h;
+  }
+
+  // Render to screen
+  SDL_RenderCopy(renderer, mTexture, clip, &renderQuad);
+}
+
+int Texture::get_width() { return m_width; }
+
+int Texture::get_height() { return m_height; }
