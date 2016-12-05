@@ -1,9 +1,13 @@
 #include "Texture.hpp"
-Texture::Texture() {
+Texture::Texture(std::string path, SDL_Renderer*& m_renderer) {
   // Initialize
   mTexture = NULL;
   m_width = 0;
   m_height = 0;
+  if (!loadFromFile(path.c_str(), m_renderer)) {
+    printf("%s%s\n","Failed to load texture image at", path.c_str());
+    exit(1);
+  }
 }
 
 Texture::~Texture() {

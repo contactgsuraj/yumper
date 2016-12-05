@@ -8,7 +8,7 @@
 class Texture {
  public:
   // Initializes variables
-  Texture();
+  Texture(std::string path, SDL_Renderer*& renderer);
 
   // Deallocates memory
   ~Texture();

@@ -2,12 +2,12 @@
 #include <SDL2/SDL_image.h>
 #include <stdio.h>
 #include <string>
+#include "Ball.hpp"
+#include "Gravity.hpp"
+#include "IO.hpp"
 #include "Texture.hpp"
 #include "Timer.hpp"
 #include "WindowInit.hpp"
-
-// Loads media
-bool loadMedia();
 
 // Frees media and shuts down SDL
 void close();
@@ -21,29 +21,13 @@ SDL_Renderer* m_renderer = NULL;
 SDL_Renderer& rendererRef = *m_renderer;
 
 // Scene textures
-Texture t_bob;
-Texture t_bg;
-
-bool loadMedia() {
-  // Load Foo' texture
-  if (!t_bob.loadFromFile("assets/bob.png", m_renderer)) {
-    printf("Failed to load Foo' texture image!\n");
-    return false;
-  }
-
-  // Load background texture
-  if (!t_bg.loadFromFile("assets/bg.png", m_renderer)) {
-    printf("Failed to load background texture image!\n");
-    return false;
-  }
-
-  return true;
-}
+Ball* t_bob = NULL;
+Texture* t_bg = NULL;
 
 void close() {
   // Free loaded images
-  t_bob.free();
-  t_bg.free();
+  t_bob->free();
+  t_bg->free();
 
   // Destroy window
   SDL_DestroyRenderer(m_renderer);
@@ -62,19 +46,27 @@ int main(int argc, char* args[]) {
     return 1;
   }
 
-  if (!loadMedia()) {
-    printf("Failed to load media!\n");
-    return 1;
-  }
+  Ball t_bob("assets/bob.png", m_renderer);
+  Texture t_bg("assets/bg2.png", m_renderer);
 
   bool quit = false;
 
   // Event handler
   SDL_Event e;
 
+  // Initialise gravity, and calculate positions.
+  Gravity gravity;
+
+  // Initialise IO
+  // IO io;
+
+  /*TODO: Floor of BG!*/
   int height = 340;
-  Timer timer;
-  int counter = 0;
+
+  int bg_scroller_offset = 0;
+  bool jump = false;
+  int jump_counter = 0;
+
   while (!quit) {
     // Handle events on queue
     while (SDL_PollEvent(&e) != 0) {
@@ -85,10 +77,12 @@ int main(int argc, char* args[]) {
         switch (e.key.keysym.sym) {
           case SDLK_UP:
           case SDLK_SPACE:
-            height = 240;
+            jump = true;
+            if (jump_counter) {
+              ++jump_counter;
+            }
             break;
           default:
-            height = 340;
             break;
         }
       }
@@ -97,13 +91,23 @@ int main(int argc, char* args[]) {
     SDL_SetRenderDrawColor(m_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(m_renderer);
 
-    t_bg.render((-1 * counter * 4), 0,  m_renderer);
-    //t_bob.render(20, height, m_renderer);
+    t_bg.render((-1 * bg_scroller_offset * 5), 0, m_renderer);
+    if (jump) {
+      t_bob.render(20, height - gravity.varGravityPositions[jump_counter],
+                   m_renderer);
+      ++jump_counter;
+      if (jump_counter >= gravity.m_max_frame) {
+        jump_counter = 0;
+        jump = false;
+      }
+    } else {
+      t_bob.render(20, height, m_renderer);
+    }
 
     // Update screen
     SDL_RenderPresent(m_renderer);
-    counter++;
-    counter %= 160;
+    bg_scroller_offset++;
+    bg_scroller_offset %= (SCREEN_WIDTH / 5);
   }
 
   // Free resources and close SDL

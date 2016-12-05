@@ -14,7 +14,7 @@ bool init(SDL_Window*& m_window, SDL_Renderer*& m_renderer) {
     }
 
     // Create window
-    m_window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED,
+    m_window = SDL_CreateWindow("yumper", SDL_WINDOWPOS_UNDEFINED,
                                 SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
                                 SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (m_window == NULL) {
