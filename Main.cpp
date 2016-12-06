@@ -72,14 +72,11 @@ int main(int argc, char* args[]) {
 
   // Textures
   load();
-  //std::shared_ptr<Ball> bob_walking_frames[4] = {bob, bob_2, bob_3, bob_2};
-  //std::shared_ptr<Ball> bob_jumping_frames[2] = {bob, bob_4};
 
   bool quit = false;
 
   SDL_Event e;
 
-  //Gravity gravity;
   int bob_height = (SCREEN_HEIGHT - 120) - 80 + 10;
 
   int bg_scroller_div = 5;
@@ -87,9 +84,6 @@ int main(int argc, char* args[]) {
   int floor_scroller_div = 4;
   int bg_scroller_offset = 0;
   int floor_scroller_offset = 0;
-  //bool jump = false;
-  //int jump_counter = 0;
-  //int bob_animation_counter = 0;
 
   while (!quit) {
     // Handle events on queue
@@ -102,10 +96,6 @@ int main(int argc, char* args[]) {
           case SDLK_UP:
           case SDLK_SPACE:
             bob_c->set_jump();
-            //jump = true;
-            //if (jump_counter) {
-            //  ++jump_counter;
-            //}
             break;
           default:
             break;
@@ -120,19 +110,6 @@ int main(int argc, char* args[]) {
     t_bg->render((-1 * bg_scroller_offset * bg_scroller_div), 0, m_renderer);
     t_floor->render((-1 * bg_scroller_offset * floor_scroller_div),
                     (SCREEN_HEIGHT - 120), m_renderer);
-    //if (jump) {
-    //  bob_jumping_frames[1]->render(
-    //      20, bob_height - gravity.varGravityPositions[jump_counter],
-    //      m_renderer);
-    //  ++jump_counter;
-    //  if (jump_counter >= gravity.m_max_frame) {
-    //    jump_counter = 0;
-    //    jump = false;
-    //  }
-    //} else {
-    //  (bob_walking_frames[bob_animation_counter / 10])
-    //      ->render(20, bob_height, m_renderer);
-    //}
     bob_c->run(m_renderer);
 
     // Update screen
@@ -142,9 +119,6 @@ int main(int argc, char* args[]) {
     floor_scroller_offset++;
     floor_scroller_offset %= (SCREEN_WIDTH / floor_scroller_div);
 
-    // Bob counter
-    //bob_animation_counter++;
-    //bob_animation_counter %= 40;
   }
 
   // Free resources and close SDL
