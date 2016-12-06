@@ -5,12 +5,12 @@ Gravity::Gravity() {
 }
 void Gravity::process() {
   int frame = 0;
-  int INIT_SPEED = 50;
+  int INIT_SPEED = 60;
   float u = INIT_SPEED;
   float v;
-  float acceleration = -19.0;
+  float acceleration = -20.0;
   float timem;
-  float timDivider = 6;
+  float timDivider = 5;
   int loops;
   while (true) {
     timem = ((float)frame / timDivider);

@@ -10,14 +10,23 @@ Texture::Texture(std::string path, SDL_Renderer*& m_renderer) {
   }
 }
 
+Texture::Texture() {
+}
+
+
 Texture::~Texture() {
-  // Deallocate
-  free();
+  clear();
+}
+
+void Texture::clear() {
+  SDL_DestroyTexture(mTexture);
+  m_width = 0;
+  m_height = 0;
 }
 
 bool Texture::loadFromFile(std::string path, SDL_Renderer*& renderer) {
   // Get rid of preexisting texture
-  free();
+  //free();
 
   // The final texture
   SDL_Texture* newTexture = NULL;
@@ -50,16 +59,6 @@ bool Texture::loadFromFile(std::string path, SDL_Renderer*& renderer) {
   // Return success
   mTexture = newTexture;
   return mTexture != NULL;
-}
-
-void Texture::free() {
-  // Free texture if it exists
-  if (mTexture != NULL) {
-    SDL_DestroyTexture(mTexture);
-    mTexture = NULL;
-    m_width = 0;
-    m_height = 0;
-  }
 }
 
 void Texture::render(int x, int y, SDL_Renderer*& renderer) {
