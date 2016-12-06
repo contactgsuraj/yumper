@@ -1,6 +1,16 @@
+TXTURDIR = screen_objs/
+PHYSDIR = physics/
 #OBJS specifies which files to compile as part of the project
-OBJS = Main.cpp WindowInit.cpp Texture.cpp Timer.cpp Gravity.cpp Ball.cpp Bob.cpp TextureContainer.cpp IO.cpp
-
+OBJS = $(ROOTDIR)Main.cpp \
+			 $(ROOTDIR)WindowInit.cpp \
+			 $(ROOTDIR)Timer.cpp \
+			 $(ROOTDIR)IO.cpp \
+			 $(PHYSDIR)Gravity.cpp \
+			 $(TXTURDIR)Texture.cpp \
+			 $(TXTURDIR)TextureContainer.cpp \
+			 $(TXTURDIR)Ball.cpp \
+			 $(TXTURDIR)Bob.cpp 
+	
 #CC specifies which compiler we're using
 CC = g++
 
@@ -11,7 +21,7 @@ COMPILER_FLAGS = -g
 #  #LINKER_FLAGS specifies the libraries we're linking against
 LINKER_FLAGS = -lSDL2 -lSDL2_image 
 #OBJ_NAME specifies the name of our exectuable
-OBJ_NAME = exe
+OBJ_NAME = yumpa
 
 #This is the target that compiles our executable
 all: exe
@@ -20,4 +30,4 @@ exe: $(OBJS)
 
 clean :
 	rm -rf ./*.out
-	rm exe
+	rm $(OBJ_NAME)

@@ -34,7 +34,8 @@ void IO::run(SDL_Renderer*& m_renderer, std::shared_ptr<Bob> bob_c,
   close(bob_c, t_container);
 }
 
-void IO::close(std::shared_ptr<Bob> bob_c, std::shared_ptr<TextureContainer> t_container) {
+void IO::close(std::shared_ptr<Bob> bob_c,
+               std::shared_ptr<TextureContainer> t_container) {
   bob_c->clear();
   t_container->clear();
 }

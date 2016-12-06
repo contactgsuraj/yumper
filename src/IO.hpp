@@ -2,8 +2,8 @@
 #define IO_H
 #include "SDL2/SDL.h"
 #include <memory>
-#include "Bob.hpp"
-#include "TextureContainer.hpp"
+#include "screen_objs/Bob.hpp"
+#include "screen_objs/TextureContainer.hpp"
 
 class IO
 {

@@ -1,8 +1,8 @@
 #ifndef BOB_H
 #define BOB_H
 #include "Ball.hpp"
-#include "const.hpp"
-#include "Gravity.hpp"
+#include "../const.hpp"
+#include "../physics/Gravity.hpp"
 #include <memory>
 #include <vector>
 

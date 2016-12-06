@@ -14,12 +14,10 @@ Texture::Texture() {
 }
 
 
-Texture::~Texture() {
-  clear();
-}
-
 void Texture::clear() {
-  SDL_DestroyTexture(mTexture);
+  if (mTexture) {
+    SDL_DestroyTexture(mTexture);
+  }
   m_width = 0;
   m_height = 0;
 }

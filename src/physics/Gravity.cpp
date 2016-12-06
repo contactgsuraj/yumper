@@ -8,9 +8,9 @@ void Gravity::process() {
   int INIT_SPEED = 75;
   float u = INIT_SPEED;
   float v;
-  float acceleration = -18.0;
+  float acceleration = -20.0;
   float timem;
-  float timDivider = 5;
+  float timDivider = 6;
   float distanceMul = 1.5;
   int loops;
   while (true) {

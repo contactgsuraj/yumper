@@ -12,7 +12,6 @@ class Texture {
   Texture(std::string path, SDL_Renderer*& renderer);
 
   // Deallocates memory
-  ~Texture();
   void clear();
 
   // Loads image at specified path

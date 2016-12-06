@@ -7,7 +7,9 @@ TextureContainer::TextureContainer(SDL_Renderer*& m_renderer) {
 
 void TextureContainer::clear() {
   for (auto tex : textures) {
-    tex->clear();
+    if (tex) {
+      tex->clear();
+    }
   }
 }
 

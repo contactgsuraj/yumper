@@ -1,8 +1,5 @@
 #include "Main.hpp"
 void close() {
-  //bob_c->clear();
-  //t_container->clear();
-  
   // Destroy window
   SDL_DestroyRenderer(m_renderer);
   SDL_DestroyWindow(m_window);

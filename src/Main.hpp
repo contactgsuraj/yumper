@@ -6,11 +6,11 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include "Bob.hpp"
+#include "screen_objs/Bob.hpp"
 #include "IO.hpp"
 #include "Timer.hpp"
 #include "WindowInit.hpp"
-#include "TextureContainer.hpp"
+#include "screen_objs/TextureContainer.hpp"
 
 // Frees media and shuts down SDL
 void close();
