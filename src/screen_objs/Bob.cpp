@@ -33,7 +33,7 @@ void Bob::run(SDL_Renderer*& m_renderer) {
 }
 
 void Bob::clear() {
-  for (auto ball: bobs_balls) {
+  for (auto ball : bobs_balls) {
     if (ball) {
       ball->clear();
     }
