@@ -14,7 +14,7 @@ void TextureContainer::clear() {
 void TextureContainer::run(SDL_Renderer*& m_renderer) {
   textures[0]->render((-1 * bg_scroller_offset * bg_scroller_div), 0,
                       m_renderer);
-  textures[1]->render((-1 * bg_scroller_offset * floor_scroller_div),
+  textures[1]->render((-1 * floor_scroller_offset * floor_scroller_div),
                       (SCREEN_HEIGHT - 120), m_renderer);
 
   bg_scroller_offset++;

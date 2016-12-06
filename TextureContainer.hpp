@@ -10,8 +10,8 @@ class TextureContainer {
   //std::shared_ptr<Texture> t_bg;
   //std::shared_ptr<Texture> t_floor;
   std::vector<std::shared_ptr<Texture>> textures;
-  int bg_scroller_div = 5;
-  int floor_scroller_div = 4;
+  const int bg_scroller_div = 3;
+  const int floor_scroller_div = 6;
   int bg_scroller_offset = 0;
   int floor_scroller_offset = 0;
  public:
