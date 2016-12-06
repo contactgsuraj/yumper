@@ -1,5 +1,6 @@
 #include "IO.hpp"
-void IO::run(SDL_Renderer*& m_renderer, std::shared_ptr<Bob> bob_c, std::shared_ptr<TextureContainer> t_container) {
+void IO::run(SDL_Renderer*& m_renderer, std::shared_ptr<Bob> bob_c,
+             std::shared_ptr<TextureContainer> t_container) {
   bool quit = false;
   SDL_Event e;
   while (!quit) {
@@ -30,4 +31,10 @@ void IO::run(SDL_Renderer*& m_renderer, std::shared_ptr<Bob> bob_c, std::shared_
     // Update screen
     SDL_RenderPresent(m_renderer);
   }
+  close(bob_c, t_container);
+}
+
+void IO::close(std::shared_ptr<Bob> bob_c, std::shared_ptr<TextureContainer> t_container) {
+  bob_c->clear();
+  t_container->clear();
 }

@@ -1,7 +1,8 @@
 #include "Main.hpp"
 void close() {
-  bob_c->clear();
-  t_container->clear();
+  //bob_c->clear();
+  //t_container->clear();
+  
   // Destroy window
   SDL_DestroyRenderer(m_renderer);
   SDL_DestroyWindow(m_window);
@@ -19,8 +20,7 @@ void load() {
 }
 
 int main(int argc, char* args[]) {
-
-  /*Initialise windows*/
+  //Initialise windows
   if (!init(m_window, m_renderer)) {
     printf("Failed to initialize!\n");
     return 1;

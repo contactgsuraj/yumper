@@ -8,7 +8,7 @@
 class IO
 {
 private:
-
+  void close(std::shared_ptr<Bob>, std::shared_ptr<TextureContainer>);
 public:
   void run(SDL_Renderer*&, std::shared_ptr<Bob>, std::shared_ptr<TextureContainer>);
 };
