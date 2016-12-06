@@ -16,7 +16,7 @@ void Bob::set_jump() {
 
 void Bob::run(SDL_Renderer*& m_renderer) {
   if (jump) {
-    bobs_balls[3]->render(
+    bobs_balls[0]->render(
         20, bob_height - gravity.varGravityPositions[jump_counter], m_renderer);
     ++jump_counter;
     if (jump_counter >= gravity.m_max_frame) {
@@ -29,7 +29,7 @@ void Bob::run(SDL_Renderer*& m_renderer) {
   }
   // Bob counter
   bob_animation_counter++;
-  bob_animation_counter %= 40;
+  bob_animation_counter %= 20;
 }
 
 void Bob::clear() {
