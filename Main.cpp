@@ -6,11 +6,11 @@
 #include <vector>
 #include "Ball.hpp"
 #include "Bob.hpp"
-//#include "Gravity.hpp"
 #include "IO.hpp"
 #include "Texture.hpp"
 #include "Timer.hpp"
 #include "WindowInit.hpp"
+#include "TextureContainer.hpp"
 
 // Frees media and shuts down SDL
 void close();
@@ -24,18 +24,14 @@ SDL_Window& windowRef = *m_window;
 SDL_Renderer* m_renderer = NULL;
 SDL_Renderer& rendererRef = *m_renderer;
 std::shared_ptr<Bob> bob_c;
-std::shared_ptr<Ball> bob;
-std::shared_ptr<Ball> bob_2;
-std::shared_ptr<Ball> bob_3;
-std::shared_ptr<Ball> bob_4;
-std::shared_ptr<Texture> t_bg;
-std::shared_ptr<Texture> t_floor;
-std::vector<std::shared_ptr<Texture>> texture_vector;
+std::shared_ptr<TextureContainer> t_container;
+//std::shared_ptr<Texture> t_bg;
+//std::shared_ptr<Texture> t_floor;
+//std::vector<std::shared_ptr<Texture>> texture_vector;
 
 void close() {
-  for (auto i : texture_vector) {
-    i->clear();
-  }
+  bob_c->clear();
+  t_container->clear();
   // Destroy window
   SDL_DestroyRenderer(m_renderer);
   SDL_DestroyWindow(m_window);
@@ -48,19 +44,12 @@ void close() {
 }
 
 void load() {
-  bob = std::make_shared<Ball>("assets/bob.png", m_renderer);
-  bob_2 = std::make_shared<Ball>("assets/bob3.png", m_renderer);
-  bob_3 = std::make_shared<Ball>("assets/bob2.png", m_renderer);
-  bob_4 = std::make_shared<Ball>("assets/bob4.png", m_renderer);
-  bob_c = std::make_shared<Bob>(bob, bob_2, bob_3, bob_4);
-  t_bg = std::make_shared<Texture>("assets/bg2.png", m_renderer);
-  t_floor = std::make_shared<Texture>("assets/floor.png", m_renderer);
-  texture_vector.push_back(bob);
-  texture_vector.push_back(bob_2);
-  texture_vector.push_back(bob_3);
-  texture_vector.push_back(bob_4);
-  texture_vector.push_back(t_bg);
-  texture_vector.push_back(t_floor);
+  bob_c = std::make_shared<Bob>(m_renderer);
+  t_container = std::make_shared<TextureContainer>(m_renderer);
+  //t_bg = std::make_shared<Texture>("assets/bg2.png", m_renderer);
+  //t_floor = std::make_shared<Texture>("assets/floor.png", m_renderer);
+  //texture_vector.push_back(t_bg);
+  //texture_vector.push_back(t_floor);
 }
 
 int main(int argc, char* args[]) {
@@ -77,10 +66,9 @@ int main(int argc, char* args[]) {
 
   SDL_Event e;
 
-  int bob_height = (SCREEN_HEIGHT - 120) - 80 + 10;
+  //int bob_height = (SCREEN_HEIGHT - 120) - 80 + 10;
 
   int bg_scroller_div = 5;
-
   int floor_scroller_div = 4;
   int bg_scroller_offset = 0;
   int floor_scroller_offset = 0;
@@ -107,17 +95,18 @@ int main(int argc, char* args[]) {
     SDL_SetRenderDrawColor(m_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(m_renderer);
 
-    t_bg->render((-1 * bg_scroller_offset * bg_scroller_div), 0, m_renderer);
-    t_floor->render((-1 * bg_scroller_offset * floor_scroller_div),
-                    (SCREEN_HEIGHT - 120), m_renderer);
+//    t_bg->render((-1 * bg_scroller_offset * bg_scroller_div), 0, m_renderer);
+//    t_floor->render((-1 * bg_scroller_offset * floor_scroller_div),
+//                    (SCREEN_HEIGHT - 120), m_renderer);
+    t_container->run(m_renderer);
     bob_c->run(m_renderer);
 
     // Update screen
     SDL_RenderPresent(m_renderer);
-    bg_scroller_offset++;
-    bg_scroller_offset %= (SCREEN_WIDTH / bg_scroller_div);
-    floor_scroller_offset++;
-    floor_scroller_offset %= (SCREEN_WIDTH / floor_scroller_div);
+//    bg_scroller_offset++;
+//    bg_scroller_offset %= (SCREEN_WIDTH / bg_scroller_div);
+//    floor_scroller_offset++;
+//    floor_scroller_offset %= (SCREEN_WIDTH / floor_scroller_div);
 
   }
 

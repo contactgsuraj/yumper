@@ -4,6 +4,7 @@
 #include "const.hpp"
 #include "Gravity.hpp"
 #include <memory>
+#include <vector>
 
 class Bob {
  private:
@@ -11,18 +12,14 @@ class Bob {
   int jump_counter = 0;
   bool jump = false;
   int bob_height = (SCREEN_HEIGHT - 120) - 80 + 10;
-  std::shared_ptr<Ball> bob1;
-  std::shared_ptr<Ball> bob2;
-  std::shared_ptr<Ball> bob3;
-  std::shared_ptr<Ball> bob4;
-  std::shared_ptr<Ball> bob_walking_frames[4];
-  std::shared_ptr<Ball> bob_jumping_frames[2];
   Gravity gravity;
+  std::vector<std::shared_ptr<Ball>> bobs_balls;
+
   public:
-  Bob(std::shared_ptr<Ball>, std::shared_ptr<Ball>, std::shared_ptr<Ball>,
-      std::shared_ptr<Ball>);
+  Bob(SDL_Renderer*& m_renderer);
   void run(SDL_Renderer*& m_renderer);
   void set_jump();
+  void clear();
 };
 
 #endif /* BOB_H */

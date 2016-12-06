@@ -1,15 +1,9 @@
 #include "Bob.hpp"
-Bob::Bob(std::shared_ptr<Ball> bob1, std::shared_ptr<Ball> bob2,
-         std::shared_ptr<Ball> bob3, std::shared_ptr<Ball> bob4) {
-  this->bob1 = bob1;
-  this->bob2 = bob2;
-  this->bob3 = bob3;
-  this->bob4 = bob4;
-  bob_walking_frames[0] = bob1;
-  bob_walking_frames[1] = bob2;
-  bob_walking_frames[2] = bob3;
-  bob_walking_frames[3] = bob2;
-  bob_jumping_frames[0] = bob4;
+Bob::Bob(SDL_Renderer*& m_renderer) {
+  bobs_balls.push_back(std::make_shared<Ball>("assets/bob.png", m_renderer));
+  bobs_balls.push_back(std::make_shared<Ball>("assets/bob3.png", m_renderer));
+  bobs_balls.push_back(std::make_shared<Ball>("assets/bob2.png", m_renderer));
+  bobs_balls.push_back(std::make_shared<Ball>("assets/bob4.png", m_renderer));
   this->gravity.process();
 }
 
@@ -22,7 +16,7 @@ void Bob::set_jump() {
 
 void Bob::run(SDL_Renderer*& m_renderer) {
   if (jump) {
-    bob_jumping_frames[0]->render(
+    bobs_balls[3]->render(
         20, bob_height - gravity.varGravityPositions[jump_counter], m_renderer);
     ++jump_counter;
     if (jump_counter >= gravity.m_max_frame) {
@@ -30,10 +24,16 @@ void Bob::run(SDL_Renderer*& m_renderer) {
       jump = false;
     }
   } else {
-    (bob_walking_frames[bob_animation_counter / 10])
+    (bobs_balls[bob_animation_counter / 10])
         ->render(20, bob_height, m_renderer);
   }
   // Bob counter
   bob_animation_counter++;
   bob_animation_counter %= 40;
+}
+
+void Bob::clear() {
+  for (auto ball: bobs_balls) {
+    ball->clear();
+  }
 }

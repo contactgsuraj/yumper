@@ -5,7 +5,7 @@ Gravity::Gravity() {
 }
 void Gravity::process() {
   int frame = 0;
-  int INIT_SPEED = 85;
+  int INIT_SPEED = 75;
   float u = INIT_SPEED;
   float v;
   float acceleration = -18.0;
