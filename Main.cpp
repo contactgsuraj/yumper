@@ -5,7 +5,8 @@
 #include <string>
 #include <vector>
 #include "Ball.hpp"
-#include "Gravity.hpp"
+#include "Bob.hpp"
+//#include "Gravity.hpp"
 #include "IO.hpp"
 #include "Texture.hpp"
 #include "Timer.hpp"
@@ -22,6 +23,7 @@ SDL_Window& windowRef = *m_window;
 // The window renderer
 SDL_Renderer* m_renderer = NULL;
 SDL_Renderer& rendererRef = *m_renderer;
+std::shared_ptr<Bob> bob_c;
 std::shared_ptr<Ball> bob;
 std::shared_ptr<Ball> bob_2;
 std::shared_ptr<Ball> bob_3;
@@ -50,6 +52,7 @@ void load() {
   bob_2 = std::make_shared<Ball>("assets/bob3.png", m_renderer);
   bob_3 = std::make_shared<Ball>("assets/bob2.png", m_renderer);
   bob_4 = std::make_shared<Ball>("assets/bob4.png", m_renderer);
+  bob_c = std::make_shared<Bob>(bob, bob_2, bob_3, bob_4);
   t_bg = std::make_shared<Texture>("assets/bg2.png", m_renderer);
   t_floor = std::make_shared<Texture>("assets/floor.png", m_renderer);
   texture_vector.push_back(bob);
@@ -69,30 +72,24 @@ int main(int argc, char* args[]) {
 
   // Textures
   load();
-  std::shared_ptr<Ball> bob_walking_frames[4] = {bob, bob_2, bob_3, bob_2};
-  std::shared_ptr<Ball> bob_jumping_frames[2] = {bob, bob_4};
+  //std::shared_ptr<Ball> bob_walking_frames[4] = {bob, bob_2, bob_3, bob_2};
+  //std::shared_ptr<Ball> bob_jumping_frames[2] = {bob, bob_4};
 
   bool quit = false;
 
-  // Event handler
   SDL_Event e;
 
-  // Initialise gravity, and calculate positions.
-  Gravity gravity;
-
-  // Initialise IO
-  // IO io;
-
-  /*TODO: Floor of BG!*/
-  int height = (SCREEN_HEIGHT - 120) - 80 + 10;
+  //Gravity gravity;
+  int bob_height = (SCREEN_HEIGHT - 120) - 80 + 10;
 
   int bg_scroller_div = 5;
+
   int floor_scroller_div = 4;
   int bg_scroller_offset = 0;
   int floor_scroller_offset = 0;
-  bool jump = false;
-  int jump_counter = 0;
-  int bob_animation_counter = 0;
+  //bool jump = false;
+  //int jump_counter = 0;
+  //int bob_animation_counter = 0;
 
   while (!quit) {
     // Handle events on queue
@@ -104,10 +101,11 @@ int main(int argc, char* args[]) {
         switch (e.key.keysym.sym) {
           case SDLK_UP:
           case SDLK_SPACE:
-            jump = true;
-            if (jump_counter) {
-              ++jump_counter;
-            }
+            bob_c->set_jump();
+            //jump = true;
+            //if (jump_counter) {
+            //  ++jump_counter;
+            //}
             break;
           default:
             break;
@@ -122,18 +120,20 @@ int main(int argc, char* args[]) {
     t_bg->render((-1 * bg_scroller_offset * bg_scroller_div), 0, m_renderer);
     t_floor->render((-1 * bg_scroller_offset * floor_scroller_div),
                     (SCREEN_HEIGHT - 120), m_renderer);
-    if (jump) {
-      bob_jumping_frames[1]->render(
-          20, height - gravity.varGravityPositions[jump_counter], m_renderer);
-      ++jump_counter;
-      if (jump_counter >= gravity.m_max_frame) {
-        jump_counter = 0;
-        jump = false;
-      }
-    } else {
-      (bob_walking_frames[bob_animation_counter / 10])
-          ->render(20, height, m_renderer);
-    }
+    //if (jump) {
+    //  bob_jumping_frames[1]->render(
+    //      20, bob_height - gravity.varGravityPositions[jump_counter],
+    //      m_renderer);
+    //  ++jump_counter;
+    //  if (jump_counter >= gravity.m_max_frame) {
+    //    jump_counter = 0;
+    //    jump = false;
+    //  }
+    //} else {
+    //  (bob_walking_frames[bob_animation_counter / 10])
+    //      ->render(20, bob_height, m_renderer);
+    //}
+    bob_c->run(m_renderer);
 
     // Update screen
     SDL_RenderPresent(m_renderer);
@@ -143,8 +143,8 @@ int main(int argc, char* args[]) {
     floor_scroller_offset %= (SCREEN_WIDTH / floor_scroller_div);
 
     // Bob counter
-    bob_animation_counter++;
-    bob_animation_counter %= 40;
+    //bob_animation_counter++;
+    //bob_animation_counter %= 40;
   }
 
   // Free resources and close SDL
