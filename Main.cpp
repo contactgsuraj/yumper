@@ -12,7 +12,6 @@
 
 // Frees media and shuts down SDL
 void close();
-void loadAssets();
 
 // The window we'll be rendering to
 SDL_Window* m_window = NULL;
@@ -115,7 +114,7 @@ int main(int argc, char* args[]) {
         jump = false;
       }
     } else {
-      (bob_walking_frames[bob_animation_counter / 8])
+      (bob_walking_frames[bob_animation_counter / 10])
           ->render(20, height, m_renderer);
     }
 
@@ -128,7 +127,7 @@ int main(int argc, char* args[]) {
 
     // Bob counter
     bob_animation_counter++;
-    bob_animation_counter %= 32;
+    bob_animation_counter %= 40;
   }
 
   // Free resources and close SDL
