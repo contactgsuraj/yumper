@@ -1,5 +1,6 @@
-TXTURDIR = screen_objs/
-PHYSDIR = physics/
+ROOTDIR=src/
+TXTURDIR = src/screen_objs/
+PHYSDIR = src/physics/
 #OBJS specifies which files to compile as part of the project
 OBJS = $(ROOTDIR)Main.cpp \
 			 $(ROOTDIR)WindowInit.cpp \

@@ -3,7 +3,7 @@ Bob::Bob(SDL_Renderer*& m_renderer) {
   bobs_balls.push_back(std::make_shared<Ball>("assets/bob.png", m_renderer));
   bobs_balls.push_back(std::make_shared<Ball>("assets/bob3.png", m_renderer));
   bobs_balls.push_back(std::make_shared<Ball>("assets/bob2.png", m_renderer));
-  bobs_balls.push_back(std::make_shared<Ball>("assets/bob4.png", m_renderer));
+  //bobs_balls.push_back(std::make_shared<Ball>("assets/bob4.png", m_renderer));
   this->gravity.process();
 }
 

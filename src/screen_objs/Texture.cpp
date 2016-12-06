@@ -4,15 +4,16 @@ Texture::Texture(std::string path, SDL_Renderer*& m_renderer) {
   mTexture = NULL;
   m_width = 0;
   m_height = 0;
+
+  //char buffer[256];
+  //char* getcwd(buffer, 256);
   if (!loadFromFile(path.c_str(), m_renderer)) {
-    printf("%s%s\n","Failed to load texture image at", path.c_str());
+    printf("%s%s\n", "Failed to load texture image at", path.c_str());
     exit(1);
   }
 }
 
-Texture::Texture() {
-}
-
+Texture::Texture() {}
 
 void Texture::clear() {
   if (mTexture) {
@@ -24,7 +25,7 @@ void Texture::clear() {
 
 bool Texture::loadFromFile(std::string path, SDL_Renderer*& renderer) {
   // Get rid of preexisting texture
-  //free();
+  // free();
 
   // The final texture
   SDL_Texture* newTexture = NULL;

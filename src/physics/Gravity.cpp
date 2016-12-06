@@ -1,8 +1,6 @@
 #include "Gravity.hpp"
 #include <iostream>
-Gravity::Gravity() {
-  process(); 
-}
+Gravity::Gravity() { process(); }
 void Gravity::process() {
   int frame = 0;
   int INIT_SPEED = 75;
@@ -25,17 +23,17 @@ void Gravity::process() {
   m_max_frame = (int)(frame - 1);
   varGravityPositions = new float[frame];
   u = INIT_SPEED;
-  for ( int i= 0; i < loops; i++) {
+  for (int i = 0; i < loops; i++) {
     timem = ((float)i / timDivider);
     v = u + (acceleration * timem);
     float position = ((v * v) - (u * u)) / (2 * acceleration);
     if (position == -0) {
       position = 0;
     }
+    /*Scaling distance*/
     position *= distanceMul;
-    if (position < 0 ) {
-      std::cerr << "POSITION LOWER THAN EXPECTED" << std::endl; 
-      std::cerr << position << std::endl; 
+    if (position < 0) {
+      std::cerr << "Position: " << position  << " lower than expected. Error" << std::endl;
     }
     varGravityPositions[i] = position;
   }
