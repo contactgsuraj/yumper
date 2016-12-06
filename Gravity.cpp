@@ -5,12 +5,13 @@ Gravity::Gravity() {
 }
 void Gravity::process() {
   int frame = 0;
-  int INIT_SPEED = 60;
+  int INIT_SPEED = 85;
   float u = INIT_SPEED;
   float v;
-  float acceleration = -20.0;
+  float acceleration = -18.0;
   float timem;
   float timDivider = 5;
+  float distanceMul = 1.5;
   int loops;
   while (true) {
     timem = ((float)frame / timDivider);
@@ -31,6 +32,7 @@ void Gravity::process() {
     if (position == -0) {
       position = 0;
     }
+    position *= distanceMul;
     if (position < 0 ) {
       std::cerr << "POSITION LOWER THAN EXPECTED" << std::endl; 
       std::cerr << position << std::endl; 
