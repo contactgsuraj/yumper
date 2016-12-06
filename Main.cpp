@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <memory>
 #include <string>
+#include <vector>
 #include "Ball.hpp"
 #include "Gravity.hpp"
 #include "IO.hpp"
@@ -12,6 +13,7 @@
 
 // Frees media and shuts down SDL
 void close();
+void load();
 
 // The window we'll be rendering to
 SDL_Window* m_window = NULL;
@@ -20,17 +22,42 @@ SDL_Window& windowRef = *m_window;
 // The window renderer
 SDL_Renderer* m_renderer = NULL;
 SDL_Renderer& rendererRef = *m_renderer;
+std::shared_ptr<Ball> bob;
+std::shared_ptr<Ball> bob_2;
+std::shared_ptr<Ball> bob_3;
+std::shared_ptr<Ball> bob_4;
+std::shared_ptr<Texture> t_bg;
+std::shared_ptr<Texture> t_floor;
+std::vector<std::shared_ptr<Texture>> texture_vector;
 
 void close() {
-  //// Destroy window
+  for (auto i : texture_vector) {
+    i->clear();
+  }
+  // Destroy window
   SDL_DestroyRenderer(m_renderer);
   SDL_DestroyWindow(m_window);
   m_window = NULL;
   m_renderer = NULL;
 
-  //// Quit SDL subsystems
+  // Quit SDL subsystems
   IMG_Quit();
   SDL_Quit();
+}
+
+void load() {
+  bob = std::make_shared<Ball>("assets/bob.png", m_renderer);
+  bob_2 = std::make_shared<Ball>("assets/bob3.png", m_renderer);
+  bob_3 = std::make_shared<Ball>("assets/bob2.png", m_renderer);
+  bob_4 = std::make_shared<Ball>("assets/bob4.png", m_renderer);
+  t_bg = std::make_shared<Texture>("assets/bg2.png", m_renderer);
+  t_floor = std::make_shared<Texture>("assets/floor.png", m_renderer);
+  texture_vector.push_back(bob);
+  texture_vector.push_back(bob_2);
+  texture_vector.push_back(bob_3);
+  texture_vector.push_back(bob_4);
+  texture_vector.push_back(t_bg);
+  texture_vector.push_back(t_floor);
 }
 
 int main(int argc, char* args[]) {
@@ -41,18 +68,7 @@ int main(int argc, char* args[]) {
   }
 
   // Textures
-  std::shared_ptr<Ball> bob =
-      std::make_shared<Ball>("assets/bob.png", m_renderer);
-  std::shared_ptr<Ball> bob_2 =
-      std::make_shared<Ball>("assets/bob3.png", m_renderer);
-  std::shared_ptr<Ball> bob_3 =
-      std::make_shared<Ball>("assets/bob2.png", m_renderer);
-  std::shared_ptr<Ball> bob_4 =
-      std::make_shared<Ball>("assets/bob4.png", m_renderer);
-  std::shared_ptr<Texture> t_bg =
-      std::make_shared<Texture>("assets/bg2.png", m_renderer);
-  std::shared_ptr<Texture> t_floor =
-      std::make_shared<Texture>("assets/floor.png", m_renderer);
+  load();
   std::shared_ptr<Ball> bob_walking_frames[4] = {bob, bob_2, bob_3, bob_2};
   std::shared_ptr<Ball> bob_jumping_frames[2] = {bob, bob_4};
 
@@ -104,7 +120,8 @@ int main(int argc, char* args[]) {
     SDL_RenderClear(m_renderer);
 
     t_bg->render((-1 * bg_scroller_offset * bg_scroller_div), 0, m_renderer);
-    t_floor->render((-1 * bg_scroller_offset * floor_scroller_div), (SCREEN_HEIGHT - 120), m_renderer);
+    t_floor->render((-1 * bg_scroller_offset * floor_scroller_div),
+                    (SCREEN_HEIGHT - 120), m_renderer);
     if (jump) {
       bob_jumping_frames[1]->render(
           20, height - gravity.varGravityPositions[jump_counter], m_renderer);
@@ -132,11 +149,5 @@ int main(int argc, char* args[]) {
 
   // Free resources and close SDL
   close();
-  bob->clear();
-  bob_2->clear();
-  bob_3->clear();
-  t_bg->clear();
-  t_floor->clear();
-
   return 0;
 }
