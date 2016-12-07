@@ -1,7 +1,7 @@
 #include "FPSCounter.hpp"
 
 FPSCounter::FPSCounter(std::shared_ptr<Timer> timer, SDL_Renderer*& renderer)
-    : Texture() {
+    : Text() {
   m_timer = timer;
 }
 

@@ -19,7 +19,7 @@ class Texture {
   // Loads image at specified path
   bool loadFromFile(std::string path, SDL_Renderer*& renderer);
   //Renders Text
-  void loadFont(std::string texture_text, SDL_Color text_color, SDL_Renderer*& m_renderer);
+  //void loadFont(std::string texture_text, SDL_Color text_color, SDL_Renderer*& m_renderer);
 
   // Renders texture at given point
   void render(int x, int y, SDL_Renderer*&);
@@ -33,10 +33,12 @@ class Texture {
   int get_height();
 
 
- private:
+ protected:
   SDL_Texture* mTexture;
   int m_width;
   int m_height;
-  TTF_Font* m_font = NULL;
+
+ private:
+  //TTF_Font* m_font = NULL;
 };
 #endif /* TEXTURE_H */

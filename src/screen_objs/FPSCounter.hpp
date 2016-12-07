@@ -3,10 +3,10 @@
 #include <memory>
 #include <sstream>
 #include "../Timer.hpp"
-#include "Texture.hpp"
+#include "Text.hpp"
 #include "../const.hpp"
 //#include <SDL2/SDL_ttf.h>
-class FPSCounter : public Texture {
+class FPSCounter : public Text {
  private:
   int frame = 0;
   std::shared_ptr<Timer> m_timer;

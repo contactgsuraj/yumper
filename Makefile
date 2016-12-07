@@ -11,6 +11,7 @@ OBJS = $(ROOTDIR)Main.cpp \
 			 $(TXTURDIR)TextureContainer.cpp \
 			 $(TXTURDIR)Ball.cpp \
 			 $(TXTURDIR)Bob.cpp \
+			 $(TXTURDIR)Text.cpp \
 			 $(TXTURDIR)FPSCounter.cpp 
 	
 #CC specifies which compiler we're using
