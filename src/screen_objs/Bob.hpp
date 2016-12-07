@@ -5,16 +5,22 @@
 #include "../physics/Gravity.hpp"
 #include <memory>
 #include <vector>
+#include <sstream>
 
 class Bob {
  private:
+  int shadow_frames = 7;
+  int shadow_frames_consolidated = shadow_frames * 2 - 1;
   int bob_animation_counter = 0;
   int jump_counter = 0;
   bool jump = false;
   int bob_height = (SCREEN_HEIGHT - 120) - 80 + 10;
+  int bob_shadow_width = 80;
+  int bob_shadow_height = 20;
   Gravity gravity;
   std::vector<std::shared_ptr<Ball>> bobs_balls;
-  std::shared_ptr<Ball> bobs_shadow;
+  std::vector<std::shared_ptr<Ball>> bobs_shadows;
+  std::vector<std::shared_ptr<Ball>> ball_shadows;
 
   public:
   Bob(SDL_Renderer*& m_renderer);

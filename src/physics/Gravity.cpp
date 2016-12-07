@@ -9,13 +9,18 @@ void Gravity::process() {
   float acceleration = -20.0;
   float timem;
   float timDivider = 6;
-  float distanceMul = 1.5;
   int loops;
   while (true) {
     timem = ((float)frame / timDivider);
     v = u + (acceleration * timem);
+    float position = ((v * v) - (u * u)) / (2 * acceleration);
+    position *= distanceMul;
+    if (position > maxDist) {
+      maxDist = position; 
+    }
     if (v <= (-1 * u)) {
       break;
+      /*increment floating point*/
     }
     ++frame;
   }
