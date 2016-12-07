@@ -17,6 +17,7 @@ void FPSCounter::count(SDL_Renderer*& m_renderer) {
   }
   ++frame;
   render_fps(avg_fps, m_renderer);
+  render(SCREEN_WIDTH - 70,SCREEN_HEIGHT - 30,m_renderer);
 }
 
 void FPSCounter::render_fps(float avg_fps, SDL_Renderer*& m_renderer) {

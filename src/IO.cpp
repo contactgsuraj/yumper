@@ -30,10 +30,7 @@ bool IO::run(SDL_Renderer*& m_renderer, std::shared_ptr<Bob> bob_c,
   t_container->run(m_renderer);
   bob_c->run(m_renderer);
   fps_counter->count(m_renderer);
-  fps_counter->render(SCREEN_WIDTH - 70,SCREEN_HEIGHT - 30,m_renderer);
 
-  // Update screen
-  SDL_RenderPresent(m_renderer);
   return false;
 }
 

@@ -36,6 +36,7 @@ int main(int argc, char* args[]) {
 
   while (!quit) {
     quit = io->run(m_renderer, bob_c, t_container);
+    SDL_RenderPresent(m_renderer);
   }
   // Free resources and close SDL
   close();

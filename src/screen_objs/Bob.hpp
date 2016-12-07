@@ -14,6 +14,7 @@ class Bob {
   int bob_height = (SCREEN_HEIGHT - 120) - 80 + 10;
   Gravity gravity;
   std::vector<std::shared_ptr<Ball>> bobs_balls;
+  std::shared_ptr<Ball> bobs_shadow;
 
   public:
   Bob(SDL_Renderer*& m_renderer);
