@@ -2,6 +2,7 @@
 #define MAIN_H
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <stdio.h>
 #include <memory>
 #include <string>
@@ -11,6 +12,7 @@
 #include "Timer.hpp"
 #include "WindowInit.hpp"
 #include "screen_objs/TextureContainer.hpp"
+#include "screen_objs/FPSCounter.hpp"
 
 // Frees media and shuts down SDL
 void close();
@@ -25,8 +27,10 @@ SDL_Renderer* m_renderer = NULL;
 SDL_Renderer& rendererRef = *m_renderer;
 std::shared_ptr<Bob> bob_c;
 std::shared_ptr<TextureContainer> t_container;
+//std::shared_ptr<Timer> timer;
+//std::shared_ptr<FPSCounter> fps_counter;
 
 // IO handler
-IO io = IO();
+std::shared_ptr<IO> io;
 
 #endif /* MAIN_H */
