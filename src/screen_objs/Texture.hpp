@@ -11,15 +11,14 @@ class Texture {
   // Initializes variables
   Texture();
   Texture(std::string path, SDL_Renderer*& renderer);
-  Texture(bool is_font, std::string path, SDL_Renderer*& renderer);
 
   // Deallocates memory
   void clear();
 
   // Loads image at specified path
   bool loadFromFile(std::string path, SDL_Renderer*& renderer);
-  //Renders Text
-  //void loadFont(std::string texture_text, SDL_Color text_color, SDL_Renderer*& m_renderer);
+  // Renders Text
+  // void loadFont(std::string texture_text, SDL_Color text_color, SDL_Renderer*& m_renderer);
 
   // Renders texture at given point
   void render(int x, int y, SDL_Renderer*&);
@@ -27,11 +26,14 @@ class Texture {
   // Renders with a clipping
   void render(int x, int y, SDL_Rect* clip, SDL_Renderer*&);
 
+  // Transparency
+  void set_blend_mode(SDL_BlendMode blending);
+  // Set alpha modulation
+  void set_alpha(Uint8 alpha);
 
   // Gets image dimensions
   int get_width();
   int get_height();
-
 
  protected:
   SDL_Texture* mTexture;
@@ -39,6 +41,6 @@ class Texture {
   int m_height;
 
  private:
-  //TTF_Font* m_font = NULL;
+  // TTF_Font* m_font = NULL;
 };
 #endif /* TEXTURE_H */
