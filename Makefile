@@ -32,5 +32,4 @@ exe: $(OBJS)
 		$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
 
 clean :
-	rm -rf ./*.out
 	rm $(OBJ_NAME)

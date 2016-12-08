@@ -25,7 +25,7 @@ void Gravity::process() {
     ++frame;
   }
   loops = frame;
-  m_max_frame = (int)(frame - 1);
+  m_max_frame = (int)(frame);
   varGravityPositions = new float[frame];
   u = INIT_SPEED;
   for (int i = 0; i < loops; i++) {
