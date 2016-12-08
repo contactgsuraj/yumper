@@ -1,8 +1,10 @@
 #include "IO.hpp"
+
 IO::IO(SDL_Renderer*& m_renderer) {
   timer->start();
   fps_counter = std::make_shared<FPSCounter>(timer, m_renderer);
 }
+
 bool IO::run(SDL_Renderer*& m_renderer, std::shared_ptr<Bob> bob_c, std::shared_ptr<TextureContainer> t_container) {
   static SDL_Event e;
   while (SDL_PollEvent(&e) != 0) {
