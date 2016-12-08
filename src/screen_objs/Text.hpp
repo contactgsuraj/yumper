@@ -10,6 +10,7 @@ class Text : public Texture {
   // Renders Text
   void loadFont(std::string texture_text, SDL_Color text_color,
                 SDL_Renderer*& m_renderer);
+  void clear();
 };
 
 #endif /* TEXT_H */

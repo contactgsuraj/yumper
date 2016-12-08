@@ -27,9 +27,6 @@ SDL_Renderer* m_renderer = NULL;
 SDL_Renderer& rendererRef = *m_renderer;
 std::shared_ptr<Bob> bob_c;
 std::shared_ptr<TextureContainer> t_container;
-// std::shared_ptr<FPSCounter> fps_counter;
-// std::shared_ptr<Timer> timer;
-// std::shared_ptr<FPSCounter> fps_counter;
 
 // IO handler
 std::shared_ptr<IO> io;
