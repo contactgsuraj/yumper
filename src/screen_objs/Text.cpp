@@ -16,7 +16,7 @@ void Text::loadFont(std::string texture_text, SDL_Color text_color, SDL_Renderer
   }
 
   // Render text surface
-  SDL_Surface* textSurface = TTF_RenderText_Solid(m_font, texture_text.c_str(), text_color);
+  SDL_Surface* textSurface = TTF_RenderText_Shaded(m_font, texture_text.c_str(), text_color, default_bg);
   if (textSurface == NULL) {
     printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());
   } else {
@@ -44,7 +44,7 @@ void Text::loadFont(std::string texture_text, SDL_Renderer*& m_renderer, int siz
   }
 
   // Render text surface
-  SDL_Surface* textSurface = TTF_RenderText_Solid(m_font, texture_text.c_str(), default_text_color);
+  SDL_Surface* textSurface = TTF_RenderText_Shaded(m_font, texture_text.c_str(), default_text_color, default_bg);
   if (textSurface == NULL) {
     printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());
   } else {

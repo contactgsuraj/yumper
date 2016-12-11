@@ -5,7 +5,7 @@ ScoreCounter::ScoreCounter() : Text() {
 
 void ScoreCounter::count(SDL_Renderer*& m_renderer) {
   ++frame;
-  if (frame == 10) {
+  if (frame == 5) {
     frame = 0;
     ++score;
   }

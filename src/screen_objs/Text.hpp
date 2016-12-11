@@ -5,6 +5,7 @@
 class Text : public Texture {
  private:
   TTF_Font* m_font = NULL;
+  SDL_Color default_bg = {0x7d, 0x7d, 0x7d};
   SDL_Color default_text_color = {0x28, 0x28, 0x28};
 
  public:
