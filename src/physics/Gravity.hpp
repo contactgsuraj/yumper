@@ -4,14 +4,13 @@
 class Gravity {
  private:
   // g = 10ms-2
-  int acceleration = -10;
-  // u = 10ms-1
-  int u = 10;
+  int acceleration = -9;
+  int INIT_SPEED = 95;
 
  public:
   Gravity();
   void process();
-  float distanceMul = 1.3;
+  float distanceMul = 1.5;
   float* varGravityPositions;
   int m_max_frame;
   float gravityPositions[33] = {0,       2.42188, 4.6875,  6.79688, 8.75,    10.5469, 12.1875, 13.6719, 15,

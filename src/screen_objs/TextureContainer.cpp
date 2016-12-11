@@ -3,6 +3,8 @@
 TextureContainer::TextureContainer(SDL_Renderer*& m_renderer) {
   textures.push_back(std::make_shared<Texture>("assets/bg2.png", m_renderer));
   textures.push_back(std::make_shared<Texture>("assets/floor.png", m_renderer));
+  /*Temporary obstacle*/
+  textures.push_back(std::make_shared<Texture>("assets/obstacle1.png", m_renderer));
 }
 
 void TextureContainer::clear() {
@@ -18,6 +20,9 @@ void TextureContainer::run(SDL_Renderer*& m_renderer) {
                       m_renderer);
   textures[1]->render((-1 * floor_scroller_offset * floor_scroller_div),
                       (SCREEN_HEIGHT - 120), m_renderer);
+  /*Temporary obstacle*/
+  textures[2]->render(SCREEN_WIDTH - (floor_scroller_offset * floor_scroller_div),
+                      (SCREEN_HEIGHT - 211), m_renderer);
 
   bg_scroller_offset++;
   bg_scroller_offset %= (SCREEN_WIDTH / bg_scroller_div);
