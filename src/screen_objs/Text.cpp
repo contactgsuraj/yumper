@@ -64,7 +64,7 @@ void Text::loadFont(std::string texture_text, SDL_Renderer*& m_renderer, int siz
 }
 
 void Text::clear() {
-  if (m_font) {
+  if (m_font != nullptr) {
     TTF_CloseFont(m_font);
   }
   Texture::clear();

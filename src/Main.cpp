@@ -12,16 +12,9 @@ void close() {
   SDL_Quit();
 }
 
-void load() {
-  //bob_c = std::make_shared<Bob>(m_renderer);
-  //t_container = std::make_shared<TextureContainer>(m_renderer);
-  gameLoop = std::make_shared<GameLoop>(m_renderer);
-}
-
 int main(int argc, char* args[]) {
-  // Initialise windows
   if (!init(m_window, m_renderer)) {
-    printf("Failed to initialize!\n");
+    std::cerr << "Failed to initialize!" << std::endl;
     return 1;
   }
 
@@ -30,12 +23,11 @@ int main(int argc, char* args[]) {
     return 1;
   }
 
-  // Loading assets
-  load();
+  gameLoop = std::make_shared<GameLoop>(m_renderer);
   bool quit = false;
 
   while (!quit) {
-    quit = gameLoop->run(m_renderer);
+    quit = gameLoop->run();
     SDL_RenderPresent(m_renderer);
   }
   // Free resources and close SDL

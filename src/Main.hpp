@@ -16,7 +16,6 @@
 
 // Frees media and shuts down SDL
 void close();
-void load();
 
 // The window we'll be rendering to
 SDL_Window* m_window = NULL;

@@ -28,7 +28,7 @@ void Texture::clear() {
 
 bool Texture::loadFromFile(std::string path, SDL_Renderer*& renderer) {
   // Get rid of preexisting texture
-  // free();
+  clear();
 
   // The final texture
   SDL_Texture* newTexture = NULL;

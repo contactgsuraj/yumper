@@ -57,6 +57,10 @@ Uint32 Timer::get_ticks() {
   return time;
 }
 
-bool Timer::is_started() { return m_started; }
+bool Timer::is_started() {
+  return m_started;
+}
 
-bool Timer::is_paused() { return m_paused; }
+bool Timer::is_paused() {
+  return m_paused;
+}

@@ -5,16 +5,14 @@ Bob::Bob(SDL_Renderer*& m_renderer) {
   }
   bobs_shadows.push_back(std::make_shared<Ball>("assets/shadow1.png", m_renderer));
   for (int i = 0; i <= shadow_frames + 1; ++i) {
-    //std::cerr << i << std::endl;
-    if (i!=0) {
+    // std::cerr << i << std::endl;
+    if (i != 0) {
       ball_shadows.push_back(std::make_shared<Ball>("assets/shadow" + std::to_string(i) + ".png", m_renderer));
       bobs_shadows.push_back(ball_shadows[i - 1]);
     }
     bobs_shadows[i]->set_blend_mode(SDL_BLENDMODE_BLEND);
     bobs_shadows[i]->set_alpha(shadow_blend);
   }
-  //bobs_shadows[0]->set_blend_mode(SDL_BLENDMODE_BLEND);
-  //bobs_shadows[0]->set_alpha(shadow_blend);
   for (int i = shadow_frames - 1; i >= 0; --i) {
     bobs_shadows.push_back(ball_shadows[i]);
   }
