@@ -55,6 +55,10 @@ void GameLoop::clear(std::shared_ptr<Bob> bob_c, std::shared_ptr<TextureContaine
 }
 
 void GameLoop::play(SDL_Renderer*& m_renderer) {
+  if (!score) {
+    score = std::make_shared<ScoreCounter>();
+  }
+  score->count(m_renderer);
 }
 
 void GameLoop::loading_screen(SDL_Renderer*& m_renderer) {

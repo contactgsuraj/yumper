@@ -4,6 +4,7 @@
 #include "SDL2/SDL.h"
 #include "screen_objs/Bob.hpp"
 #include "screen_objs/FPSCounter.hpp"
+#include "screen_objs/ScoreCounter.hpp"
 #include "screen_objs/TextureContainer.hpp"
 
 class GameLoop {
@@ -12,6 +13,7 @@ class GameLoop {
   std::shared_ptr<Timer> timer = std::make_shared<Timer>();
   std::shared_ptr<FPSCounter> fps_counter;
   std::shared_ptr<Text> pressSpace;
+  std::shared_ptr<ScoreCounter> score;
   std::shared_ptr<Bob> bob_c;
   std::shared_ptr<TextureContainer> t_container;
   void play(SDL_Renderer*& m_renderer);

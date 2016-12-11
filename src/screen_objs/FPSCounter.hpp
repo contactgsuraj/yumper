@@ -5,7 +5,6 @@
 #include "../Timer.hpp"
 #include "Text.hpp"
 #include "../const.hpp"
-//#include <SDL2/SDL_ttf.h>
 class FPSCounter : public Text {
  private:
   int frame = 0;
