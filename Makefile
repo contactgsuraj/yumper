@@ -24,7 +24,7 @@ COMPILER_FLAGS = -g
 #  #LINKER_FLAGS specifies the libraries we're linking against
 LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf
 #OBJ_NAME specifies the name of our exectuable
-OBJ_NAME = yumpa
+OBJ_NAME = yumper
 
 #This is the target that compiles our executable
 all: exe
