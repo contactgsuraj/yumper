@@ -11,10 +11,12 @@ class GameLoop {
   void clear(std::shared_ptr<Bob>, std::shared_ptr<TextureContainer>);
   std::shared_ptr<Timer> timer = std::make_shared<Timer>();
   std::shared_ptr<FPSCounter> fps_counter;
-  void play(SDL_Renderer*& m_renderer);
-  void loading_screen(SDL_Renderer*& m_renderer);
+  std::shared_ptr<Text> pressSpace;
   std::shared_ptr<Bob> bob_c;
   std::shared_ptr<TextureContainer> t_container;
+  void play(SDL_Renderer*& m_renderer);
+  void loading_screen(SDL_Renderer*& m_renderer);
+  bool start = false;
 
  public:
   bool run(SDL_Renderer*&);
