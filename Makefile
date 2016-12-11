@@ -19,17 +19,16 @@ CC = g++
 
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppresses all warnings
-COMPILER_FLAGS = -g
+COMPILER_FLAGS = -g -o
 #
 #  #LINKER_FLAGS specifies the libraries we're linking against
 LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf
 #OBJ_NAME specifies the name of our exectuable
-OBJ_NAME = yumper
+OUT = yumper
 
-#This is the target that compiles our executable
-all: exe
-exe: $(OBJS)
-		$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
+all: $(OUT)
+$(OUT): $(OBJS)
+	$(CC) $(COMPILER_FLAGS) $@ $^ ${LINKER_FLAGS}
 
-clean :
-	rm $(OBJ_NAME)
+clean:
+	rm yumper
