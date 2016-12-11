@@ -2,3 +2,4 @@ yumpa
 gimpFiles/*
 .ycm*
 src/numLines
+*.xcf
