@@ -13,9 +13,9 @@ void close() {
 }
 
 void load() {
-  bob_c = std::make_shared<Bob>(m_renderer);
-  t_container = std::make_shared<TextureContainer>(m_renderer);
-  io = std::make_shared<IO>(m_renderer);
+  //bob_c = std::make_shared<Bob>(m_renderer);
+  //t_container = std::make_shared<TextureContainer>(m_renderer);
+  gameLoop = std::make_shared<GameLoop>(m_renderer);
 }
 
 int main(int argc, char* args[]) {
@@ -35,7 +35,7 @@ int main(int argc, char* args[]) {
   bool quit = false;
 
   while (!quit) {
-    quit = io->run(m_renderer, bob_c, t_container);
+    quit = gameLoop->run(m_renderer);
     SDL_RenderPresent(m_renderer);
   }
   // Free resources and close SDL

@@ -5,7 +5,7 @@ PHYSDIR = src/physics/
 OBJS = $(ROOTDIR)Main.cpp \
 			 $(ROOTDIR)WindowInit.cpp \
 			 $(ROOTDIR)Timer.cpp \
-			 $(ROOTDIR)IO.cpp \
+			 $(ROOTDIR)GameLoop.cpp \
 			 $(PHYSDIR)Gravity.cpp \
 			 $(TXTURDIR)Texture.cpp \
 			 $(TXTURDIR)TextureContainer.cpp \

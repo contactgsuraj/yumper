@@ -7,7 +7,7 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include "IO.hpp"
+#include "GameLoop.hpp"
 #include "Timer.hpp"
 #include "WindowInit.hpp"
 #include "screen_objs/Bob.hpp"
@@ -25,10 +25,10 @@ SDL_Window& windowRef = *m_window;
 // The window renderer
 SDL_Renderer* m_renderer = NULL;
 SDL_Renderer& rendererRef = *m_renderer;
-std::shared_ptr<Bob> bob_c;
-std::shared_ptr<TextureContainer> t_container;
+//std::shared_ptr<Bob> bob_c;
+//std::shared_ptr<TextureContainer> t_container;
 
 // IO handler
-std::shared_ptr<IO> io;
+std::shared_ptr<GameLoop> gameLoop;
 
 #endif /* MAIN_H */
