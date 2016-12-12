@@ -9,6 +9,11 @@ void ScrollableTexture::render() {
   scroller_offset++;
   scroller_offset %= (div_width / scroller_div);
 }
+void ScrollableTexture::render(SDL_Rect* clip) {
+  Texture::render(scrollCalculator(), height, clip);
+  scroller_offset++;
+  scroller_offset %= (div_width / scroller_div);
+}
 
 int ScrollableTexture::scrollCalculator() {
   return (-1 * scroller_offset * scroller_div);

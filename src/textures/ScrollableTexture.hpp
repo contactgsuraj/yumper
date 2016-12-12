@@ -6,7 +6,7 @@ class ScrollableTexture : public Texture
 {
 private:
 protected:
-  int scrollCalculator();
+  virtual int scrollCalculator() = 0;
   int scroller_offset = 0;
   int scroller_div = 0;
   int div_width;
@@ -15,6 +15,7 @@ protected:
 public:
   ScrollableTexture(int scroller_div, int div_width, std::string asset, SDL_Renderer*& m_renderer);
   void render();
+  void render(SDL_Rect* clip);
 };
 
 #endif /* SCROLLABLETEXTURE_H */

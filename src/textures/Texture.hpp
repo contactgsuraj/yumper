@@ -8,13 +8,11 @@
 
 class Texture {
  public:
-  // Initializes variables
   Texture(SDL_Renderer*&);
   Texture(std::string path, SDL_Renderer*& renderer);
 
   void clear();
 
-  // Loads image at specified path
   bool loadFromFile(std::string path);
 
   // Renders texture at given point
@@ -27,7 +25,6 @@ class Texture {
   void set_blend_mode(SDL_BlendMode blending);
   void set_alpha(Uint8 alpha);
 
-  // Gets image dimensions
   int get_width();
   int get_height();
 
@@ -37,7 +34,5 @@ class Texture {
   int m_height;
   SDL_Renderer*& m_renderer;
 
- private:
-  // TTF_Font* m_font = NULL;
 };
 #endif /* TEXTURE_H */

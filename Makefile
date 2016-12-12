@@ -2,6 +2,7 @@ ROOTDIR=src/
 CONSTTXTUREDIR = src/textures/constant/
 TXTUREDIR = src/textures/
 OBSTACLEDIR = src/textures/obstacles/
+SPIKEDIR = src/textures/obstacles/spikeTrap/
 PHYSDIR = src/physics/
 OBJS = $(ROOTDIR)Main.o \
 			 $(ROOTDIR)WindowInit.o \
@@ -17,7 +18,9 @@ OBJS = $(ROOTDIR)Main.o \
 			 $(CONSTTXTUREDIR)BG.o \
 			 $(TXTUREDIR)Text.o \
 			 $(TXTUREDIR)ScrollableTexture.o \
-			 $(TXTUREDIR)Texture.o
+			 $(TXTUREDIR)Texture.o \
+			 $(OBSTACLEDIR)Obstacle.o \
+			 $(SPIKEDIR)SpikeTrap.o
 	
 CXX = g++
 CXXFLAGS = -g
@@ -45,6 +48,8 @@ $(CONSTTXTUREDIR)ScoreCounter.o:$(CONSTTXTUREDIR)ScoreCounter.hpp $(TXTUREDIR)Te
 $(CONSTTXTUREDIR)FPSCounter.o:$(CONSTTXTUREDIR)FPSCounter.hpp $(ROOTDIR)Timer.hpp $(TXTUREDIR)Text.hpp $(ROOTDIR)const.hpp 
 $(CONSTTXTUREDIR)Floor.o:$(CONSTTXTUREDIR)Floor.hpp $(TXTUREDIR)ScrollableTexture.cpp $(ROOTDIR)const.hpp
 $(CONSTTXTUREDIR)BG.o:$(CONSTTXTUREDIR)BG.hpp $(TXTUREDIR)ScrollableTexture.cpp $(ROOTDIR)const.hpp
+$(OBSTACLEDIR)Obstacle.o:$(OBSTACLEDIR)Obstacle.hpp $(TXTUREDIR)ScrollableTexture.cpp
+$(SPIKEDIR)SpikeTrap.o:$(SPIKEDIR)SpikeTrap.hpp $(OBSTACLEDIR)Obstacle.hpp $(ROOTDIR)const.hpp
 
 
 .PHONY: all clean

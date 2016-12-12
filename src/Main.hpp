@@ -24,10 +24,8 @@ SDL_Window& windowRef = *m_window;
 // The window renderer
 SDL_Renderer* m_renderer = NULL;
 SDL_Renderer& rendererRef = *m_renderer;
-// std::shared_ptr<Bob> bob_c;
-// std::shared_ptr<TextureContainer> t_container;
 
-// IO handler
+// GameLoop
 std::shared_ptr<GameLoop> gameLoop;
 
 #endif /* MAIN_H */
