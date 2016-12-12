@@ -1,7 +1,7 @@
 #include "Bob.hpp"
 Bob::Bob(SDL_Renderer*& m_renderer) : m_renderer(m_renderer) {
-  bobs_frames.push_back(std::make_shared<Ball>("assets/bob_therunner.png", m_renderer));
-  bobs_frames.push_back(std::make_shared<Ball>("assets/bob_jumping.png", m_renderer));
+  bobs_frames.push_back(std::make_shared<Ball>("assets/bob/bob_therunner.png", m_renderer));
+  bobs_frames.push_back(std::make_shared<Ball>("assets/bob/bob_jumping.png", m_renderer));
   bobs_shadows.push_back(std::make_shared<Ball>("assets/shadow1.png", m_renderer));
   for (int i = 0; i <= shadow_frames + 1; ++i) {
     /*Shadows*/

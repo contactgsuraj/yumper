@@ -9,7 +9,7 @@ Text::Text(SDL_Renderer*& m_renderer) : Texture(m_renderer) {
 
 void Text::loadFont(std::string texture_text, SDL_Color text_color) {
   if (!m_font) {
-    m_font = TTF_OpenFont("assets/HelvetiPixel.ttf", 12);
+    m_font = TTF_OpenFont("assets/fonts/HelvetiPixel.ttf", 12);
     if (m_font == NULL) {
       std::cerr << "Failed to load font. SDL_ttf Error: " << TTF_GetError() << std::endl;
     }
@@ -37,7 +37,7 @@ void Text::loadFont(std::string texture_text, SDL_Color text_color) {
 
 void Text::loadFont(std::string texture_text, int size) {
   if (!m_font) {
-    m_font = TTF_OpenFont("assets/HelvetiPixel.ttf", size);
+    m_font = TTF_OpenFont("assets/fonts/HelvetiPixel.ttf", size);
     if (m_font == NULL) {
       std::cerr << "Failed to load font. SDL_ttf Error: " << TTF_GetError() << std::endl;
     }
