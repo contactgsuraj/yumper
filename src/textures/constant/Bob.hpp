@@ -3,8 +3,8 @@
 #include <memory>
 #include <sstream>
 #include <vector>
-#include "../const.hpp"
-#include "../physics/Gravity.hpp"
+#include "../../const.hpp"
+#include "../../physics/Gravity.hpp"
 #include "Ball.hpp"
 
 class Bob {
@@ -17,7 +17,7 @@ class Bob {
   int bob_animation_counter = 0;
   int jump_counter = 0;
   bool jump = false;
-  int bob_dimension=100;
+  int bob_dimension=150;
   int bob_height = (SCREEN_HEIGHT - 120) - bob_dimension + 10;
   int bob_shadow_width = 80;
   int bob_shadow_height = 20;

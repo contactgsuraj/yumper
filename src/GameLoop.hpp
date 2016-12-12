@@ -2,10 +2,10 @@
 #define gameLoop_H
 #include <memory>
 #include "SDL2/SDL.h"
-#include "screen_objs/Bob.hpp"
-#include "screen_objs/FPSCounter.hpp"
-#include "screen_objs/ScoreCounter.hpp"
-#include "screen_objs/TextureContainer.hpp"
+#include "textures/constant/Bob.hpp"
+#include "textures/constant/FPSCounter.hpp"
+#include "textures/constant/ScoreCounter.hpp"
+#include "textures/constant/TextureContainer.hpp"
 
 class GameLoop {
  private:

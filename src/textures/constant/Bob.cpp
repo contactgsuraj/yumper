@@ -1,11 +1,10 @@
 #include "Bob.hpp"
 Bob::Bob(SDL_Renderer*& m_renderer) : m_renderer(m_renderer) {
-  // for (int i = 1; i <= bob_animation_frames; ++i) {
   bobs_frames.push_back(std::make_shared<Ball>("assets/bob_therunner.png", m_renderer));
-  //}
+  bobs_frames.push_back(std::make_shared<Ball>("assets/bob_jumping.png", m_renderer));
   bobs_shadows.push_back(std::make_shared<Ball>("assets/shadow1.png", m_renderer));
   for (int i = 0; i <= shadow_frames + 1; ++i) {
-    // std::cerr << i << std::endl;
+    /*Shadows*/
     if (i != 0) {
       ball_shadows.push_back(std::make_shared<Ball>("assets/shadow" + std::to_string(i) + ".png", m_renderer));
       bobs_shadows.push_back(ball_shadows[i - 1]);
@@ -32,11 +31,12 @@ void Bob::run() {
   clip.h = clip.w;
   clip.y = ((bob_animation_counter / 5) / 4) * clip.w;
   clip.x = ((bob_animation_counter / 5) % 4) * clip.w;
+
   if (jump) {
     float grav_pos = gravity.varGravityPositions[jump_counter];
-    bobs_shadows[(jump_counter / ((gravity.m_max_frame + 1) / shadow_frames_consolidated))]->render(
-        50-2, SCREEN_HEIGHT - 120 + 10);
-    bobs_frames[0]->render(20, bob_height - gravity.varGravityPositions[jump_counter], &clip);
+    int shadowCurrentFrame = (jump_counter / ((gravity.m_max_frame + 1) / shadow_frames_consolidated));
+    bobs_shadows[shadowCurrentFrame]->render(50-2, SCREEN_HEIGHT - 120 + 10);
+    bobs_frames[1]->render(20, bob_height - gravity.varGravityPositions[jump_counter]);
     ++jump_counter;
     if (jump_counter >= gravity.m_max_frame) {
       jump_counter = 0;
@@ -44,7 +44,6 @@ void Bob::run() {
     }
   } else {
     bobs_shadows[0]->render(50-2, SCREEN_HEIGHT - 120 + 10);
-    // bobs_frames[bob_animation_counter / 5]->render(20, bob_height);
     bobs_frames[0]->render(20, bob_height, &clip);
   }
   // Bob counter

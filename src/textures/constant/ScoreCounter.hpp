@@ -2,8 +2,7 @@
 #define SCORECOUNTER_H
 #include <memory>
 #include <sstream>
-#include "../Timer.hpp"
-#include "../const.hpp"
+#include "../../const.hpp"
 #include "Text.hpp"
 class ScoreCounter : public Text {
  private:

@@ -4,3 +4,4 @@ gimpFiles/*
 .ycm*
 src/numLines
 *.xcf
+*.o
