@@ -9,12 +9,13 @@ class FPSCounter : public Text {
  private:
   int frame = 0;
   std::shared_ptr<Timer> m_timer;
-  void render_fps(float, SDL_Renderer*&);
+  void render_fps(float);
   SDL_Color text_color = { 0xeb, 0xdb, 0xb2 };
   float avg_fps = 0;
+  SDL_Renderer*& m_renderer;
  public:
   FPSCounter(std::shared_ptr<Timer> timer, SDL_Renderer*& m_renderer);
-  void count(SDL_Renderer*& m_renderer);
+  void count();
 };
 
 #endif /* FPSCOUNTER_H */

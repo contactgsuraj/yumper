@@ -1,17 +1,17 @@
 #include "Texture.hpp"
-Texture::Texture(std::string path, SDL_Renderer*& m_renderer) {
+Texture::Texture(std::string path, SDL_Renderer*& m_renderer) : m_renderer(m_renderer) {
   // Initialize
   mTexture = NULL;
   m_width = 0;
   m_height = 0;
 
-  if (!loadFromFile(path.c_str(), m_renderer)) {
+  if (!loadFromFile(path.c_str())) {
     printf("%s%s\n", "Failed to load texture image at", path.c_str());
     exit(1);
   }
 }
 
-Texture::Texture() {
+Texture::Texture(SDL_Renderer*& m_renderer) : m_renderer(m_renderer) {
   // Initialize
   mTexture = NULL;
   m_width = 0;
@@ -26,7 +26,7 @@ void Texture::clear() {
   m_height = 0;
 }
 
-bool Texture::loadFromFile(std::string path, SDL_Renderer*& renderer) {
+bool Texture::loadFromFile(std::string path) {
   // Get rid of preexisting texture
   clear();
 
@@ -42,7 +42,7 @@ bool Texture::loadFromFile(std::string path, SDL_Renderer*& renderer) {
   SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0, 0));
 
   // Create texture from surface pixels
-  newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
+  newTexture = SDL_CreateTextureFromSurface(m_renderer, loadedSurface);
   if (newTexture == NULL) {
     printf("Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
   }
@@ -58,13 +58,13 @@ bool Texture::loadFromFile(std::string path, SDL_Renderer*& renderer) {
   return mTexture != NULL;
 }
 
-void Texture::render(int x, int y, SDL_Renderer*& renderer) {
+void Texture::render(int x, int y) {
   // Set rendering space and render to screen
   SDL_Rect renderQuad = {x, y, m_width, m_height};
-  SDL_RenderCopy(renderer, mTexture, NULL, &renderQuad);
+  SDL_RenderCopy(m_renderer, mTexture, NULL, &renderQuad);
 }
 
-void Texture::render(int x, int y, SDL_Rect* clip, SDL_Renderer*& renderer) {
+void Texture::render(int x, int y, SDL_Rect* clip) {
   // Set rendering space and render to screen
   SDL_Rect renderQuad = {x, y, m_width, m_height};
 
@@ -75,7 +75,7 @@ void Texture::render(int x, int y, SDL_Rect* clip, SDL_Renderer*& renderer) {
   }
 
   // Render to screen
-  SDL_RenderCopy(renderer, mTexture, clip, &renderQuad);
+  SDL_RenderCopy(m_renderer, mTexture, clip, &renderQuad);
 }
 
 void Texture::set_blend_mode(SDL_BlendMode blender) {

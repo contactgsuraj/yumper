@@ -9,26 +9,22 @@
 class Texture {
  public:
   // Initializes variables
-  Texture();
+  Texture(SDL_Renderer*&);
   Texture(std::string path, SDL_Renderer*& renderer);
 
-  // Deallocates memory
   void clear();
 
   // Loads image at specified path
-  bool loadFromFile(std::string path, SDL_Renderer*& renderer);
-  // Renders Text
-  // void loadFont(std::string texture_text, SDL_Color text_color, SDL_Renderer*& m_renderer);
+  bool loadFromFile(std::string path);
 
   // Renders texture at given point
-  void render(int x, int y, SDL_Renderer*&);
+  void render(int x, int y);
 
   // Renders with a clipping
-  void render(int x, int y, SDL_Rect* clip, SDL_Renderer*&);
+  void render(int x, int y, SDL_Rect* clip);
 
   // Transparency
   void set_blend_mode(SDL_BlendMode blending);
-  // Set alpha modulation
   void set_alpha(Uint8 alpha);
 
   // Gets image dimensions
@@ -39,6 +35,7 @@ class Texture {
   SDL_Texture* mTexture;
   int m_width;
   int m_height;
+  SDL_Renderer*& m_renderer;
 
  private:
   // TTF_Font* m_font = NULL;

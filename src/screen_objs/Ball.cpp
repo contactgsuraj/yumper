@@ -4,7 +4,7 @@ Ball::Ball(std::string path, SDL_Renderer*& m_renderer) : Texture(path, m_render
   //int i = 0;
 }
 
-Ball::Ball() : Texture() {
+Ball::Ball(SDL_Renderer*& m_renderer) : Texture(m_renderer) {
 }
 
 Ball::~Ball() {

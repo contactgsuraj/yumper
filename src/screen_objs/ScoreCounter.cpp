@@ -1,22 +1,22 @@
 #include "ScoreCounter.hpp"
 #include <iomanip>
-ScoreCounter::ScoreCounter() : Text() {
+ScoreCounter::ScoreCounter(SDL_Renderer*& m_renderer) : Text(m_renderer) , m_renderer(m_renderer) {
 }
 
-void ScoreCounter::count(SDL_Renderer*& m_renderer) {
+void ScoreCounter::count() {
   ++frame;
   if (frame == 5) {
     frame = 0;
     ++score;
   }
-  render_fps(m_renderer);
-  render(SCREEN_WIDTH - 195 , 10, m_renderer);
+  render_fps();
+  render(SCREEN_WIDTH - 195, 10);
 }
 
-void ScoreCounter::render_fps(SDL_Renderer*& m_renderer) {
+void ScoreCounter::render_fps() {
   std::stringstream ss;
   ss << "Score: " << std::setfill('0') << std::setw(7) << score;
-  loadFont(ss.str(),  m_renderer, 36);
+  loadFont(ss.str(), 36);
 }
 
 int ScoreCounter::getScore() {

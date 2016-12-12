@@ -9,12 +9,13 @@ class ScoreCounter : public Text {
  private:
   int frame = 0;
   int score = 0;
-  void render_fps(SDL_Renderer*&);
+  void render_fps();
   SDL_Color text_color = { 0x28, 0x28, 0x28 };
   int text_width;
+  SDL_Renderer*& m_renderer;
  public:
-  ScoreCounter();
-  void count(SDL_Renderer*& m_renderer);
+  ScoreCounter(SDL_Renderer*& m_renderer);
+  void count();
   int getScore();
 };
 

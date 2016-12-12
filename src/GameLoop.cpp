@@ -3,6 +3,7 @@
 GameLoop::GameLoop(SDL_Renderer*& m_renderer) : m_renderer(m_renderer) {
   bob_c = std::make_shared<Bob>(m_renderer);
   t_container = std::make_shared<TextureContainer>(m_renderer);
+  score = std::make_shared<ScoreCounter>(m_renderer);
 }
 
 bool GameLoop::run() {
@@ -12,12 +13,12 @@ bool GameLoop::run() {
   SDL_SetRenderDrawColor(m_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
   SDL_RenderClear(m_renderer);
 
-  t_container->run(m_renderer);
-  bob_c->run(m_renderer);
+  t_container->run();
+  bob_c->run();
 
   /*call turnOnFPS() to enable FPS counter*/
   if (fps_counter) {
-    fps_counter->count(m_renderer);
+    fps_counter->count();
   }
 
   if (!start) {
@@ -40,17 +41,14 @@ void GameLoop::clear() {
 }
 
 void GameLoop::play(){
-  if (!score) {
-    score = std::make_shared<ScoreCounter>();
-  }
-  score->count(m_renderer);
+  score->count();
 }
 
 void GameLoop::loading_screen() {
   if (!pressSpace) {
     pressSpace = std::make_shared<Text>("Press Space To Start", 64, m_renderer);
   }
-  pressSpace->render((SCREEN_WIDTH - pressSpace->get_width()) / 2, 10, m_renderer);
+  pressSpace->render((SCREEN_WIDTH - pressSpace->get_width()) / 2, 10);
 }
 
 void GameLoop::turnOnFPS() {

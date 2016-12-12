@@ -1,8 +1,8 @@
 #include "Bob.hpp"
-Bob::Bob(SDL_Renderer*& m_renderer) {
-  for (int i = 1; i <= bob_animation_frames; ++i) {
-    bobs_balls.push_back(std::make_shared<Ball>("assets/bob" + std::to_string(i) + ".png", m_renderer));
-  }
+Bob::Bob(SDL_Renderer*& m_renderer) : m_renderer(m_renderer) {
+  // for (int i = 1; i <= bob_animation_frames; ++i) {
+  bobs_frames.push_back(std::make_shared<Ball>("assets/bob_therunner.png", m_renderer));
+  //}
   bobs_shadows.push_back(std::make_shared<Ball>("assets/shadow1.png", m_renderer));
   for (int i = 0; i <= shadow_frames + 1; ++i) {
     // std::cerr << i << std::endl;
@@ -26,21 +26,26 @@ void Bob::set_jump() {
   }
 }
 
-void Bob::run(SDL_Renderer*& m_renderer) {
+void Bob::run() {
+  SDL_Rect clip;
+  clip.w = bob_dimension;
+  clip.h = clip.w;
+  clip.y = ((bob_animation_counter / 5) / 4) * clip.w;
+  clip.x = ((bob_animation_counter / 5) % 4) * clip.w;
   if (jump) {
     float grav_pos = gravity.varGravityPositions[jump_counter];
-    bobs_shadows[(jump_counter / ((gravity.m_max_frame + 1) / shadow_frames_consolidated))]->render(20, bob_height + 73,
-                                                                                                    m_renderer);
-    bobs_balls[bob_animation_counter / 5]->render(20, bob_height - gravity.varGravityPositions[jump_counter],
-                                                  m_renderer);
+    bobs_shadows[(jump_counter / ((gravity.m_max_frame + 1) / shadow_frames_consolidated))]->render(
+        25, SCREEN_HEIGHT - 120);
+    bobs_frames[0]->render(20, bob_height - gravity.varGravityPositions[jump_counter], &clip);
     ++jump_counter;
     if (jump_counter >= gravity.m_max_frame) {
       jump_counter = 0;
       jump = false;
     }
   } else {
-    bobs_shadows[0]->render(20, bob_height + 73, m_renderer);
-    bobs_balls[bob_animation_counter / 5]->render(20, bob_height, m_renderer);
+    bobs_shadows[0]->render(25, SCREEN_HEIGHT - 120);
+    // bobs_frames[bob_animation_counter / 5]->render(20, bob_height);
+    bobs_frames[0]->render(20, bob_height, &clip);
   }
   // Bob counter
   bob_animation_counter++;
@@ -48,7 +53,7 @@ void Bob::run(SDL_Renderer*& m_renderer) {
 }
 
 void Bob::clear() {
-  for (auto ball : bobs_balls) {
+  for (auto ball : bobs_frames) {
     if (ball) {
       ball->clear();
     }

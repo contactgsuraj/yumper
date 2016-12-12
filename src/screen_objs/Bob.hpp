@@ -9,6 +9,7 @@
 
 class Bob {
  private:
+  SDL_Renderer*& m_renderer;
   int bob_animation_frames = 8;
   int shadow_blend = 130;
   int shadow_frames = 7;
@@ -16,17 +17,18 @@ class Bob {
   int bob_animation_counter = 0;
   int jump_counter = 0;
   bool jump = false;
-  int bob_height = (SCREEN_HEIGHT - 120) - 80 + 10;
+  int bob_dimension=100;
+  int bob_height = (SCREEN_HEIGHT - 120) - bob_dimension + 10;
   int bob_shadow_width = 80;
   int bob_shadow_height = 20;
   Gravity gravity;
-  std::vector<std::shared_ptr<Ball>> bobs_balls;
+  std::vector<std::shared_ptr<Ball>> bobs_frames;
   std::vector<std::shared_ptr<Ball>> bobs_shadows;
   std::vector<std::shared_ptr<Ball>> ball_shadows;
 
  public:
   Bob(SDL_Renderer*& m_renderer);
-  void run(SDL_Renderer*& m_renderer);
+  void run();
   void set_jump();
   void clear();
 };

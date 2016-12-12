@@ -6,7 +6,7 @@
 class Ball : public Texture {
  private:
  public:
-  Ball();
+  Ball(SDL_Renderer*&);
   Ball(std::string path, SDL_Renderer*& m_renderer);
   ~Ball();
 };

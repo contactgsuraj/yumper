@@ -1,13 +1,13 @@
 #include "Text.hpp"
 
-Text::Text(std::string text, int size, SDL_Renderer*& m_renderer) : Texture() {
-  loadFont(text, m_renderer, size);
+Text::Text(std::string text, int size, SDL_Renderer*& m_renderer) : Texture(m_renderer) {
+  loadFont(text, size);
 }
 
-Text::Text() : Texture() {
+Text::Text(SDL_Renderer*& m_renderer) : Texture(m_renderer) {
 }
 
-void Text::loadFont(std::string texture_text, SDL_Color text_color, SDL_Renderer*& m_renderer) {
+void Text::loadFont(std::string texture_text, SDL_Color text_color) {
   if (!m_font) {
     m_font = TTF_OpenFont("assets/HelvetiPixel.ttf", 12);
     if (m_font == NULL) {
@@ -35,7 +35,7 @@ void Text::loadFont(std::string texture_text, SDL_Color text_color, SDL_Renderer
   }
 }
 
-void Text::loadFont(std::string texture_text, SDL_Renderer*& m_renderer, int size) {
+void Text::loadFont(std::string texture_text, int size) {
   if (!m_font) {
     m_font = TTF_OpenFont("assets/HelvetiPixel.ttf", size);
     if (m_font == NULL) {
@@ -64,7 +64,7 @@ void Text::loadFont(std::string texture_text, SDL_Renderer*& m_renderer, int siz
 }
 
 void Text::clear() {
-  if (m_font != nullptr) {
+  if (m_font != NULL) {
     TTF_CloseFont(m_font);
   }
   Texture::clear();
