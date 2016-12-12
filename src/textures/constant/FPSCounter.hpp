@@ -3,7 +3,7 @@
 #include <memory>
 #include <sstream>
 #include "../../Timer.hpp"
-#include "Text.hpp"
+#include "../Text.hpp"
 #include "../../const.hpp"
 class FPSCounter : public Text {
  private:

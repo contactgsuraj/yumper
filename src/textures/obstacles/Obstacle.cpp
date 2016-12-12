@@ -1,5 +1,5 @@
 #include "Obstacle.hpp"
-Obstacle::Obstacle(int difficulty) {
+Obstacle::Obstacle(int difficulty, SDL_Renderer*& m_renderer) : Texture(m_renderer) {
   this->difficulty = difficulty;
 }
 

@@ -1,5 +1,6 @@
 #ifndef GRAVITY_H
 #define GRAVITY_H
+#include <iostream>
 
 class Gravity {
  private:
@@ -10,7 +11,7 @@ class Gravity {
  public:
   Gravity();
   void process();
-  float distanceMul = 1.5;
+  float distanceMul = 1;
   float* varGravityPositions;
   int m_max_frame;
   float gravityPositions[33] = {0,       2.42188, 4.6875,  6.79688, 8.75,    10.5469, 12.1875, 13.6719, 15,

@@ -1,5 +1,4 @@
 #include "Gravity.hpp"
-#include <iostream>
 Gravity::Gravity() { process(); }
 void Gravity::process() {
   int frame = 0;

@@ -1,7 +1,7 @@
 #ifndef BALL_H
 #define BALL_H
 #include <string>
-#include "Texture.hpp"
+#include "../Texture.hpp"
 #include "../../const.hpp"
 
 class Ball : public Texture {

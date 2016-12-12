@@ -1,8 +1,8 @@
 #include "TextureContainer.hpp"
 
-TextureContainer::TextureContainer(SDL_Renderer*& m_renderer){ 
-  textures.push_back(std::make_shared<Texture>("assets/bg.png", m_renderer));
-  textures.push_back(std::make_shared<Texture>("assets/floor.png", m_renderer));
+TextureContainer::TextureContainer(SDL_Renderer*& m_renderer) {
+  textures.push_back(std::make_shared<BG>(m_renderer));
+  textures.push_back(std::make_shared<Floor>(m_renderer));
 }
 
 void TextureContainer::clear() {
@@ -14,10 +14,6 @@ void TextureContainer::clear() {
 }
 
 void TextureContainer::run() {
-  textures[0]->render((-1 * bg_scroller_offset * bg_scroller_div), 0);
-  textures[1]->render((-1 * floor_scroller_offset * floor_scroller_div), (SCREEN_HEIGHT - 120));
-  bg_scroller_offset++;
-  bg_scroller_offset %= (BG_WIDTH / bg_scroller_div);
-  floor_scroller_offset++;
-  floor_scroller_offset %= (SCREEN_WIDTH / floor_scroller_div);
+  textures[0]->render();
+  textures[1]->render();
 }

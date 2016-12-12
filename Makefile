@@ -1,5 +1,6 @@
 ROOTDIR=src/
-TXTURDIR = src/textures/constant/
+CONSTTXTUREDIR = src/textures/constant/
+TXTUREDIR = src/textures/
 OBSTACLEDIR = src/textures/obstacles/
 PHYSDIR = src/physics/
 OBJS = $(ROOTDIR)Main.o \
@@ -7,13 +8,16 @@ OBJS = $(ROOTDIR)Main.o \
 			 $(ROOTDIR)Timer.o \
 			 $(ROOTDIR)GameLoop.o \
 			 $(PHYSDIR)Gravity.o \
-			 $(TXTURDIR)Ball.o \
-			 $(TXTURDIR)Bob.o \
-			 $(TXTURDIR)FPSCounter.o \
-			 $(TXTURDIR)ScoreCounter.o \
-			 $(TXTURDIR)Text.o \
-			 $(TXTURDIR)Texture.o \
-			 $(TXTURDIR)TextureContainer.o
+			 $(CONSTTXTUREDIR)Ball.o \
+			 $(CONSTTXTUREDIR)Bob.o \
+			 $(CONSTTXTUREDIR)FPSCounter.o \
+			 $(CONSTTXTUREDIR)ScoreCounter.o \
+			 $(CONSTTXTUREDIR)TextureContainer.o \
+			 $(CONSTTXTUREDIR)Floor.o \
+			 $(CONSTTXTUREDIR)BG.o \
+			 $(TXTUREDIR)Text.o \
+			 $(TXTUREDIR)ScrollableTexture.o \
+			 $(TXTUREDIR)Texture.o
 	
 CXX = g++
 CXXFLAGS = -g
@@ -29,14 +33,18 @@ $(OUT): $(OBJS)
 clean:
 	-rm -f $(OUT) $(OBJS)
 
-$(ROOTDIR)Main.o: $(ROOTDIR)Main.cpp $(ROOTDIR)GameLoop.hpp $(ROOTDIR)Timer.hpp $(ROOTDIR)WindowInit.hpp $(TXTURDIR)Bob.hpp $(TXTURDIR)FPSCounter.hpp $(TXTURDIR)TextureContainer.hpp
+$(ROOTDIR)Main.o: $(ROOTDIR)Main.cpp $(ROOTDIR)GameLoop.hpp $(ROOTDIR)Timer.hpp $(ROOTDIR)WindowInit.hpp $(CONSTTXTUREDIR)Bob.hpp $(CONSTTXTUREDIR)FPSCounter.hpp $(CONSTTXTUREDIR)TextureContainer.hpp
 $(ROOTDIR)WindowInit.o: $(ROOTDIR)WindowInit.hpp $(ROOTDIR)const.hpp
-$(ROOTDIR)GameLoop.o: $(ROOTDIR)GameLoop.hpp $(TXTURDIR)TextureContainer.o $(TXTURDIR)ScoreCounter.o $(TXTURDIR)FPSCounter.o $(TXTURDIR)Bob.o
-$(TXTURDIR)TextureContainer.o:$(ROOTDIR)const.hpp $(TXTURDIR)Texture.hpp $(TXTURDIR)TextureContainer.hpp
-$(TXTURDIR)Ball.o:$(TXTURDIR)Ball.hpp $(ROOTDIR)const.hpp $(TXTURDIR)Texture.hpp
-$(TXTURDIR)Bob.o:$(TXTURDIR)Bob.hpp $(ROOTDIR)const.hpp $(PHYSDIR)Gravity.hpp
-$(TXTURDIR)Text.o:$(TXTURDIR)Text.hpp $(TXTURDIR)Texture.hpp
-$(TXTURDIR)ScoreCounter.o:$(TXTURDIR)ScoreCounter.hpp $(TXTURDIR)Text.hpp $(ROOTDIR)const.hpp 
-$(TXTURDIR)FPSCounter.o:$(TXTURDIR)FPSCounter.hpp $(ROOTDIR)Timer.hpp $(TXTURDIR)Text.hpp $(ROOTDIR)const.hpp 
+$(ROOTDIR)GameLoop.o: $(ROOTDIR)GameLoop.hpp $(CONSTTXTUREDIR)TextureContainer.hpp $(CONSTTXTUREDIR)ScoreCounter.hpp $(CONSTTXTUREDIR)FPSCounter.hpp $(CONSTTXTUREDIR)Bob.hpp
+$(CONSTTXTUREDIR)TextureContainer.o:$(ROOTDIR)const.hpp $(TXTUREDIR)Texture.hpp $(CONSTTXTUREDIR)TextureContainer.hpp
+$(CONSTTXTUREDIR)Ball.o:$(CONSTTXTUREDIR)Ball.hpp $(ROOTDIR)const.hpp $(TXTUREDIR)Texture.hpp
+$(CONSTTXTUREDIR)Bob.o:$(CONSTTXTUREDIR)Bob.hpp $(ROOTDIR)const.hpp $(PHYSDIR)Gravity.hpp
+$(TXTUREDIR)Text.o:$(TXTUREDIR)Text.hpp $(TXTUREDIR)Texture.hpp
+$(TXTUREDIR)ScrollableTexture.o:$(TXTUREDIR)ScrollableTexture.hpp $(TXTUREDIR)Texture.hpp
+$(CONSTTXTUREDIR)ScoreCounter.o:$(CONSTTXTUREDIR)ScoreCounter.hpp $(TXTUREDIR)Text.hpp $(ROOTDIR)const.hpp 
+$(CONSTTXTUREDIR)FPSCounter.o:$(CONSTTXTUREDIR)FPSCounter.hpp $(ROOTDIR)Timer.hpp $(TXTUREDIR)Text.hpp $(ROOTDIR)const.hpp 
+$(CONSTTXTUREDIR)Floor.o:$(CONSTTXTUREDIR)Floor.hpp $(TXTUREDIR)ScrollableTexture.cpp $(ROOTDIR)const.hpp
+$(CONSTTXTUREDIR)BG.o:$(CONSTTXTUREDIR)BG.hpp $(TXTUREDIR)ScrollableTexture.cpp $(ROOTDIR)const.hpp
+
 
 .PHONY: all clean

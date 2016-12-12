@@ -3,7 +3,7 @@
 #include <memory>
 #include <sstream>
 #include "../../const.hpp"
-#include "Text.hpp"
+#include "../Text.hpp"
 class ScoreCounter : public Text {
  private:
   int frame = 0;
