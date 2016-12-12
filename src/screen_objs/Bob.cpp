@@ -35,7 +35,7 @@ void Bob::run() {
   if (jump) {
     float grav_pos = gravity.varGravityPositions[jump_counter];
     bobs_shadows[(jump_counter / ((gravity.m_max_frame + 1) / shadow_frames_consolidated))]->render(
-        25, SCREEN_HEIGHT - 120);
+        50-2, SCREEN_HEIGHT - 120 + 10);
     bobs_frames[0]->render(20, bob_height - gravity.varGravityPositions[jump_counter], &clip);
     ++jump_counter;
     if (jump_counter >= gravity.m_max_frame) {
@@ -43,7 +43,7 @@ void Bob::run() {
       jump = false;
     }
   } else {
-    bobs_shadows[0]->render(25, SCREEN_HEIGHT - 120);
+    bobs_shadows[0]->render(50-2, SCREEN_HEIGHT - 120 + 10);
     // bobs_frames[bob_animation_counter / 5]->render(20, bob_height);
     bobs_frames[0]->render(20, bob_height, &clip);
   }
