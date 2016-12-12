@@ -9,7 +9,7 @@
 
 class Bob {
  private:
-  SDL_Renderer*& m_renderer;
+  //SDL_Renderer*& m_renderer;
   int bob_animation_frames = 8;
   int shadow_blend = 130;
   int shadow_frames = 7;

@@ -1,6 +1,6 @@
 #include "TextureContainer.hpp"
 
-TextureContainer::TextureContainer(SDL_Renderer*& m_renderer) : m_renderer(m_renderer) { 
+TextureContainer::TextureContainer(SDL_Renderer*& m_renderer){ 
   textures.push_back(std::make_shared<Texture>("assets/bg.png", m_renderer));
   textures.push_back(std::make_shared<Texture>("assets/floor.png", m_renderer));
 }

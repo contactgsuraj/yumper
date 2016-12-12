@@ -11,7 +11,6 @@ class ScoreCounter : public Text {
   void render_fps();
   SDL_Color text_color = { 0x28, 0x28, 0x28 };
   int text_width;
-  SDL_Renderer*& m_renderer;
  public:
   ScoreCounter(SDL_Renderer*& m_renderer);
   void count();

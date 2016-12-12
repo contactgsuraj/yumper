@@ -7,7 +7,7 @@
 
 class TextureContainer {
  private:
-  SDL_Renderer*& m_renderer;
+  //SDL_Renderer*& m_renderer;
   const int BG_WIDTH = 980 * 2;
   std::vector<std::shared_ptr<Texture>> textures;
   const int bg_scroller_div = 2;

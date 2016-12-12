@@ -1,6 +1,6 @@
 #include "ScoreCounter.hpp"
 #include <iomanip>
-ScoreCounter::ScoreCounter(SDL_Renderer*& m_renderer) : Text(m_renderer) , m_renderer(m_renderer) {
+ScoreCounter::ScoreCounter(SDL_Renderer*& m_renderer) : Text(m_renderer) {
 }
 
 void ScoreCounter::count() {
