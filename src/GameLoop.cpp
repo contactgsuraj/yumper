@@ -4,7 +4,7 @@ GameLoop::GameLoop(SDL_Renderer*& m_renderer) : m_renderer(m_renderer) {
   bob_c = std::make_shared<Bob>(m_renderer);
   t_container = std::make_shared<TextureContainer>(m_renderer);
   score = std::make_shared<ScoreCounter>(m_renderer);
-  spikes = std::make_shared<SpikeTrap>(m_renderer);
+  og = std::make_shared<ObstacleGenerator>(m_renderer);
 }
 
 bool GameLoop::run() {
@@ -25,7 +25,7 @@ bool GameLoop::run() {
   if (!start) {
     loading_screen();
   } else {
-    spikes->run();
+  //  spikes->run();
     play();
   }
 
@@ -37,7 +37,7 @@ void GameLoop::clear() {
   t_container->clear();
   pressSpace->clear();
   score->clear();
-  spikes->clear();
+ // spikes->clear();
   if (fps_counter) {
     fps_counter->clear();
   }
@@ -45,6 +45,8 @@ void GameLoop::clear() {
 
 void GameLoop::play(){
   score->count();
+  og->run(score->getScore());
+  //ObstacleGeneration->run(&score->getScore());
 }
 
 void GameLoop::loading_screen() {

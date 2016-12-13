@@ -8,6 +8,7 @@ OBJS = $(ROOTDIR)Main.o \
 			 $(ROOTDIR)WindowInit.o \
 			 $(ROOTDIR)Timer.o \
 			 $(ROOTDIR)GameLoop.o \
+			 $(ROOTDIR)ObstacleGenerator.o \
 			 $(PHYSDIR)Gravity.o \
 			 $(CONSTTXTUREDIR)Ball.o \
 			 $(CONSTTXTUREDIR)Bob.o \
@@ -39,6 +40,7 @@ clean:
 $(ROOTDIR)Main.o: $(ROOTDIR)Main.cpp $(ROOTDIR)GameLoop.hpp $(ROOTDIR)Timer.hpp $(ROOTDIR)WindowInit.hpp $(CONSTTXTUREDIR)Bob.hpp $(CONSTTXTUREDIR)FPSCounter.hpp $(CONSTTXTUREDIR)TextureContainer.hpp
 $(ROOTDIR)WindowInit.o: $(ROOTDIR)WindowInit.hpp $(ROOTDIR)const.hpp
 $(ROOTDIR)GameLoop.o: $(ROOTDIR)GameLoop.hpp $(CONSTTXTUREDIR)TextureContainer.hpp $(CONSTTXTUREDIR)ScoreCounter.hpp $(CONSTTXTUREDIR)FPSCounter.hpp $(CONSTTXTUREDIR)Bob.hpp
+$(ROOTDIR)ObstacleGenerator.o: $(ROOTDIR)ObstacleGenerator.hpp $(SPIKEDIR)SpikeTrap.hpp 
 $(CONSTTXTUREDIR)TextureContainer.o:$(ROOTDIR)const.hpp $(TXTUREDIR)Texture.hpp $(CONSTTXTUREDIR)TextureContainer.hpp
 $(CONSTTXTUREDIR)Ball.o:$(CONSTTXTUREDIR)Ball.hpp $(ROOTDIR)const.hpp $(TXTUREDIR)Texture.hpp
 $(CONSTTXTUREDIR)Bob.o:$(CONSTTXTUREDIR)Bob.hpp $(ROOTDIR)const.hpp $(PHYSDIR)Gravity.hpp

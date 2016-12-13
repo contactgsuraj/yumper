@@ -13,6 +13,9 @@ protected:
 public:
   SpikeTrap(SDL_Renderer*&);
   void run();
+  void runhelper();
+  void resetSpikes();
+  bool running = false;
 };
 
 #endif /* SPIKETRAP_H */

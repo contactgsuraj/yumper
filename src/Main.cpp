@@ -24,6 +24,7 @@ int main(int argc, char* args[]) {
   }
 
   gameLoop = std::make_shared<GameLoop>(m_renderer);
+  gameLoop->turnOnFPS();
   bool quit = false;
 
   while (!quit) {
