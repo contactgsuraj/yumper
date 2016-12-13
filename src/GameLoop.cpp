@@ -41,6 +41,7 @@ void GameLoop::clear() {
   if (fps_counter) {
     fps_counter->clear();
   }
+  og->clear();
 }
 
 void GameLoop::play(){

@@ -19,19 +19,8 @@ void ObstacleGenerator::run(int score) {
 
   int mod1 = 6;
   int mod2 = 5;
-  if (score < 30) {
-    mod1 = 5;
-    mod2 = 4;
-  }
-  if (score < 40) {
-    mod1 = 3;
-    mod2 = 4;
-  }
-
-  if (score < 50) {
-    mod1 = 2;
-    mod2 = 2;
-  }
+  mod1 = 3;
+  mod2 = 2;
 
   if (nextobstacle == score) {
     std::cout << "Generating spikes" << std::endl;
@@ -49,5 +38,10 @@ void ObstacleGenerator::run(int score) {
     if (spike->running) {
       spike->run();
     }
+  }
+}
+void ObstacleGenerator::clear() {
+  for (auto spike : spikes) {
+    spike->clear();
   }
 }

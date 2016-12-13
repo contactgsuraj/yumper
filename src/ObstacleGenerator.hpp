@@ -19,10 +19,10 @@ class ObstacleGenerator
 public:
   ObstacleGenerator(SDL_Renderer*& m_renderer);
   void run(int score);
+  void clear();
 private:
   std::vector<std::shared_ptr<SpikeTrap>> spikes;
   int nextobstacle = 0;
-
 };
 
 #endif /* OBSTACLEGENERATOR_H */
