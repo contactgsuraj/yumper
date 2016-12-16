@@ -24,12 +24,15 @@ class Bob {
   std::vector<std::shared_ptr<Ball>> bobs_frames;
   std::vector<std::shared_ptr<Ball>> bobs_shadows;
   std::vector<std::shared_ptr<Ball>> ball_shadows;
+  int y_vector = bob_height;
 
  public:
+  bool is_dead = false;
   Bob(SDL_Renderer*& m_renderer);
   void run();
   void set_jump();
   void clear();
+  int get_y();
 };
 
 #endif /* BOB_H */

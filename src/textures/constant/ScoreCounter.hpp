@@ -15,6 +15,7 @@ class ScoreCounter : public Text {
   ScoreCounter(SDL_Renderer*& m_renderer);
   void count();
   int getScore();
+  void reset();
 };
 
 #endif /* SCORECOUNTER_H */

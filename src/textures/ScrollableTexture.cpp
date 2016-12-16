@@ -4,6 +4,10 @@ ScrollableTexture::ScrollableTexture(int scroller_div, int div_width,std::string
   this->div_width = div_width;
 }
 
+void ScrollableTexture::stop() {
+  Texture::render(scrollCalculator(), height);
+}
+
 void ScrollableTexture::render() {
   Texture::render(scrollCalculator(), height);
   scroller_offset++;

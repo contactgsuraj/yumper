@@ -16,6 +16,7 @@ public:
   ScrollableTexture(int scroller_div, int div_width, std::string asset, SDL_Renderer*& m_renderer);
   void render();
   void render(SDL_Rect* clip);
+  void stop();
 };
 
 #endif /* SCROLLABLETEXTURE_H */

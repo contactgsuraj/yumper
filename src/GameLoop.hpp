@@ -8,9 +8,11 @@
 #include "textures/constant/ScoreCounter.hpp"
 #include "textures/constant/TextureContainer.hpp"
 #include "textures/obstacles/spikeTrap/SpikeTrap.hpp"
+#include "physics/Collision.hpp"
 
 class GameLoop {
  private:
+  bool is_dead;
   void clear();
   std::shared_ptr<Timer> timer = std::make_shared<Timer>();
   std::shared_ptr<ObstacleGenerator> og;
@@ -19,7 +21,9 @@ class GameLoop {
   std::shared_ptr<ScoreCounter> score;
   std::shared_ptr<Bob> bob_c;
   std::shared_ptr<TextureContainer> t_container;
+  std::shared_ptr<Collision> collision;
   void play();
+  void start_again();
   void loading_screen();
   bool start = false;
   bool IO();
@@ -29,6 +33,7 @@ class GameLoop {
   bool run();
   GameLoop(SDL_Renderer*&);
   void turnOnFPS();
+  void dead();
 };
 
 #endif /* game_loop_H */

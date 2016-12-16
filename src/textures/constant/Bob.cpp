@@ -33,14 +33,15 @@ void Bob::run() {
   clip.x = ((bob_animation_counter / 5) % 4) * clip.w;
 
   if (jump) {
-    float grav_pos = gravity.varGravityPositions[jump_counter];
     int shadowCurrentFrame = (jump_counter / ((gravity.m_max_frame + 1) / shadow_frames_consolidated));
     bobs_shadows[shadowCurrentFrame]->render(50-2, SCREEN_HEIGHT - 120 + 10);
-    bobs_frames[1]->render(20, bob_height - gravity.varGravityPositions[jump_counter]);
+    y_vector = bob_height - gravity.varGravityPositions[jump_counter];
+    bobs_frames[1]->render(20, y_vector);
     ++jump_counter;
     if (jump_counter >= gravity.m_max_frame) {
       jump_counter = 0;
       jump = false;
+      y_vector = bob_height;
     }
   } else {
     bobs_shadows[0]->render(50-2, SCREEN_HEIGHT - 120 + 10);
@@ -57,4 +58,8 @@ void Bob::clear() {
       ball->clear();
     }
   }
+}
+
+int Bob::get_y() {
+  return y_vector;
 }

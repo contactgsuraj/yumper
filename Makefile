@@ -10,6 +10,7 @@ OBJS = $(ROOTDIR)Main.o \
 			 $(ROOTDIR)GameLoop.o \
 			 $(ROOTDIR)ObstacleGenerator.o \
 			 $(PHYSDIR)Gravity.o \
+			 $(PHYSDIR)Collision.o \
 			 $(CONSTTXTUREDIR)Ball.o \
 			 $(CONSTTXTUREDIR)Bob.o \
 			 $(CONSTTXTUREDIR)FPSCounter.o \
@@ -24,7 +25,7 @@ OBJS = $(ROOTDIR)Main.o \
 			 $(SPIKEDIR)SpikeTrap.o
 	
 CXX = g++
-CXXFLAGS = -g
+CXXFLAGS = -g -Wall -Werror
 LDLIBS = -lSDL2 -lSDL2_image -lSDL2_ttf
 
 LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf
@@ -52,6 +53,7 @@ $(CONSTTXTUREDIR)Floor.o:$(CONSTTXTUREDIR)Floor.hpp $(TXTUREDIR)ScrollableTextur
 $(CONSTTXTUREDIR)BG.o:$(CONSTTXTUREDIR)BG.hpp $(TXTUREDIR)ScrollableTexture.cpp $(ROOTDIR)const.hpp
 $(OBSTACLEDIR)Obstacle.o:$(OBSTACLEDIR)Obstacle.hpp $(TXTUREDIR)ScrollableTexture.cpp
 $(SPIKEDIR)SpikeTrap.o:$(SPIKEDIR)SpikeTrap.hpp $(OBSTACLEDIR)Obstacle.hpp $(ROOTDIR)const.hpp
+$(PHYSDIR)Collision.o:$(CONSTTXTUREDIR)Bob.hpp 
 
 
 .PHONY: all clean

@@ -14,6 +14,7 @@ class TextureContainer {
   TextureContainer(SDL_Renderer*& m_renderer);
   void clear();
   void run();
+  void stop();
 };
 
 #endif /* TEXTURECONTAINER_H */

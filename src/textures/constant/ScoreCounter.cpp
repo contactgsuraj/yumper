@@ -22,3 +22,7 @@ void ScoreCounter::render_fps() {
 int ScoreCounter::getScore() {
   return score;
 }
+
+void ScoreCounter::reset() {
+  score = 0;
+}
