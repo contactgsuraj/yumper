@@ -27,7 +27,7 @@ void SpikeTrap::run() {
 int SpikeTrap::scrollCalculator() {
   x = SCREEN_WIDTH + (128 / 2) - this->get_width() / 5 - (scroller_offset * scroller_div);
   //(20+150) to this->get_width() - 20
-  if (x < 95 && x >= (20 - this->get_width())) {
+  if (x <= (20 + 150 - 47) && x >= -50) {
     collision->spike_detect();
   }
   return x;

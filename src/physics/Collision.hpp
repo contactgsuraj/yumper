@@ -6,7 +6,7 @@ class Collision
 {
 private:
   std::shared_ptr<Bob> bob_c; 
-  int easy_mode = 20;
+  int easy_mode = 10;
 public:
   Collision(std::shared_ptr<Bob>);
   void spike_detect();
