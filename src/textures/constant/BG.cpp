@@ -4,5 +4,5 @@ BG::BG(SDL_Renderer*& m_renderer) : ScrollableTexture(2, SCREEN_WIDTH*2, "assets
 }
 
 int BG::scrollCalculator() {
-  ScrollableTexture::scrollCalculator();
+  return ScrollableTexture::scrollCalculator();
 }

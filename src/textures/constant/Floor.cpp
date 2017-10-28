@@ -4,5 +4,5 @@ Floor::Floor(SDL_Renderer*& m_renderer) : ScrollableTexture(5, SCREEN_WIDTH, "as
 }
 
 int Floor::scrollCalculator() {
-  ScrollableTexture::scrollCalculator();
+  return ScrollableTexture::scrollCalculator();
 }
